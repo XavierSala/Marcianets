@@ -49,7 +49,7 @@ public class App extends GraphicsProgram {
     /**
      * Classe que conté les imatges del joc.
      */
-     private ArmariImatges armari = ArmariImatges.getInstance();
+     private Armari armari = Armari.getInstance();
 
      /**
       * Protagonista del joc que es controla per l'usuari.
@@ -135,6 +135,15 @@ public class App extends GraphicsProgram {
     }
 
     /**
+     * Obtenir un valor aleatòri.
+     * @param max valor màxim
+     * @return número a retornar
+     */
+    final int posicioAleatoria(final int max) {
+        return r.nextInt(max);
+    }
+
+    /**
      * Prem una tecla i es mou en la direcció que toca.
      * @param e event
      */
@@ -168,14 +177,6 @@ public class App extends GraphicsProgram {
             protagonista.setVelocitat(0);
     }
 
-    /**
-     * Obtenir un valor aleatòri.
-     * @param max valor màxim
-     * @return número a retornar
-     */
-    final int posicioAleatoria(final int max) {
-        return r.nextInt(max);
-    }
     /**
      * Inicialitza el sistema.
      */

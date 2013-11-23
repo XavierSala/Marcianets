@@ -13,7 +13,7 @@ public class NauAmiga extends Nau {
     /**
      * Armari d'imatges.
      */
-    private ArmariImatges armari = ArmariImatges.getInstance();
+    private Armari armari = Armari.getInstance();
     /**
      * número màxim de bales del carregador.
      */

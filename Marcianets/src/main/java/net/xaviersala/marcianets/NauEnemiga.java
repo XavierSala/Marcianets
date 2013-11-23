@@ -12,7 +12,7 @@ public class NauEnemiga extends Nau {
     /**
      * Armari d'imatges.
      */
-    private ArmariImatges armari = ArmariImatges.getInstance();
+    private Armari armari = Armari.getInstance();
     /**
      * Cap on es mou si arriba al racó.
      */

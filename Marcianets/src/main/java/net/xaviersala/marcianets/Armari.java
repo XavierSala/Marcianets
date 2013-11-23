@@ -13,15 +13,18 @@ import acm.graphics.GImage;
 import acm.graphics.GRectangle;
 
 /**
+ * La classe armari és una classe en la que s'hi posen totes les coses que la
+ * majoria dels objectes necessiten.
+ *
  * @author xavier
  *
  */
-public class ArmariImatges {
+public final class Armari {
 
     /**
      * Singleton.
      */
-    private static ArmariImatges instance;
+    private static Armari instance;
 
     /**
      * Lloc on es pinten les imatges.
@@ -39,7 +42,7 @@ public class ArmariImatges {
     /**
      * Crea l'armari d'imatge.
      */
-    private ArmariImatges() {
+    private Armari() {
         armari = new Hashtable<String, GImage>();
         coses = new  CopyOnWriteArrayList<Cosa>();
         pantalla = null;
@@ -49,9 +52,9 @@ public class ArmariImatges {
      * Obtenir la instancia de l'armari.
      * @return retorna una instància a l'armari
      */
-    public static ArmariImatges getInstance() {
+    public static Armari getInstance() {
         if (instance == null) {
-            instance = new ArmariImatges();
+            instance = new Armari();
         }
         return instance;
     }
@@ -173,7 +176,7 @@ public class ArmariImatges {
      * Afegeix una imatge a l'armari.
      * @param nom nom de la imatge
      */
-    public final void setImatge(final String nom) {
+    public void setImatge(final String nom) {
         armari.put(nom, new GImage(nom));
     }
 
@@ -182,7 +185,7 @@ public class ArmariImatges {
      * @param nom imatge que es vol recuperar
      * @return Imatge a recuperar
      */
-    public final Image getImatge(final String nom) {
+    public Image getImatge(final String nom) {
         return armari.get(nom).getImage();
     }
 
@@ -191,7 +194,7 @@ public class ArmariImatges {
      * @param b Objecte a comprovar
      * @return Torna si està dins o no
      */
-    public final boolean dinsPantalla(final Cosa b) {
+    public boolean dinsPantalla(final Cosa b) {
         GRectangle pant  = new GRectangle(0, 0,
                 pantalla.getWidth(), pantalla.getHeight());
         return pant.intersects(b.getRectanglePosicio());
@@ -201,7 +204,7 @@ public class ArmariImatges {
     /**
      * Moure tots els personatges.
      */
-    public final void mou() {
+    public void mou() {
         for (Iterator< Cosa > it = coses.iterator(); it.hasNext();) {
 
             Cosa p = it.next();
