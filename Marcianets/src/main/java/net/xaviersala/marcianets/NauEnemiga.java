@@ -14,7 +14,7 @@ public class NauEnemiga extends Nau {
      */
     private ArmariImatges armari = ArmariImatges.getInstance();
     /**
-     * Cap on es mou si arriba al racó
+     * Cap on es mou si arriba al racó.
      */
     private double moviment;
     /**
@@ -52,9 +52,7 @@ public class NauEnemiga extends Nau {
     public final void dispara() {
         Bala b = armari.addBala("bala.jpg",  getEsquerra(), getDalt(),
                 DIRECCIOBALES);
-        while (b.getRectanglePosicio().intersects(getRectanglePosicio())) {
-                b.mou();
-        }
+        treuBalaDeLaNau((Cosa) this, b);
     }
 
     /**
@@ -63,12 +61,25 @@ public class NauEnemiga extends Nau {
     public void mou() {
         super.mou();
 
-        // Si surt, gira...
-        if (getImatge().getX() < 0
-                || getDreta() > armari.getPantalla().getWidth()) {
-            setDireccio((getDireccio() + MITJAVOLTA) % VOLTA);
-            mouA(0, getAltura() * moviment);
-            moviment *= -1;
+        if (isForaDePantalla()) {
+            gira();
         }
      }
+
+    /**
+     * Gira cap a l'altre costat.
+     */
+    private void gira() {
+        setDireccio((getDireccio() + MITJAVOLTA) % VOLTA);
+        mouA(0, getAltura() * moviment);
+        moviment *= -1;
+    }
+
+    /**
+     * @return Si ha sortit de la pantalla.
+     */
+    private boolean isForaDePantalla() {
+        return getImatge().getX() < 0
+                || getDreta() > armari.getPantalla().getWidth();
+    }
 }

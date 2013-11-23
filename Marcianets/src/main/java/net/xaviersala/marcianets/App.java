@@ -65,16 +65,12 @@ public class App extends GraphicsProgram {
     public final void run() {
 
         carregarImatges();
+
         clicaPerComencar();
 
-        int principal = armari.addNau("nau.gif", 0,
-                posicioAleatoria(SCREENWIDTH),
-                SCREENHEIGHT - POSICIOCINCUANTA);
-        protagonista =  (Nau) armari.getElement(principal);
+        afegirProtagonista();
 
-        for (int i = 0; i < NUMNAUS; i++) {
-            armari.addNau("enemic1.gif", 1, POSICIOCINCUANTA * i, 0);
-        }
+        afegirNausEnemigues();
 
 
         while (true) {
@@ -84,6 +80,27 @@ public class App extends GraphicsProgram {
 
 
         // System.out.println("Hello World!");
+    }
+
+
+    /**
+     * Afegir la nau principal del joc.
+     */
+    private void afegirProtagonista() {
+        int principal = armari.addNau("nau.gif", 0,
+                posicioAleatoria(SCREENWIDTH),
+                SCREENHEIGHT - POSICIOCINCUANTA);
+        protagonista =  (Nau) armari.getElement(principal);
+    }
+
+
+    /**
+     * Agegir naus enemigues.
+     */
+    private void afegirNausEnemigues() {
+        for (int i = 0; i < NUMNAUS; i++) {
+            armari.addNau("enemic1.gif", 1, POSICIOCINCUANTA * i, 0);
+        }
     }
 
 
@@ -143,7 +160,7 @@ public class App extends GraphicsProgram {
     }
 
     /**
-     * Deixa anar la tecla. Només té efecte per la tecla d'avançar
+     * Deixa anar la tecla. Només té efecte per la tecla d'avançar.
      * @param e event
      */
     @Override

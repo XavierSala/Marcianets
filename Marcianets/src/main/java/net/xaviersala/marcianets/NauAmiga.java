@@ -19,7 +19,7 @@ public class NauAmiga extends Nau {
      */
     protected static final int MAXIMBALES = 6;
     /**
-     * Bales que queden en el carregador
+     * Bales que queden en el carregador.
      */
     private int balesDisponibles;
     /**
@@ -49,9 +49,7 @@ public class NauAmiga extends Nau {
             Bala b = armari.addBala("bala.jpg",  getEsquerra(), getDalt(),
                     DIRECCIOBALES);
             balesDisponibles--;
-            while (b.getRectanglePosicio().intersects(getRectanglePosicio())) {
-                    b.mou();
-            }
+            treuBalaDeLaNau((Cosa) this, b);
         }
     }
 

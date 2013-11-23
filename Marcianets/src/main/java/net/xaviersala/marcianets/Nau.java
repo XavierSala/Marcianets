@@ -56,6 +56,17 @@ public abstract class Nau extends CosaMobil {
     public abstract void dispara();
 
     /**
+     * Mou la bala fins que no mata al que ha disparat.
+     * @param c cosa que dispara
+     * @param b bala
+     */
+    protected final void treuBalaDeLaNau(final Cosa c, final Bala b) {
+        while (b.getRectanglePosicio().intersects(c.getRectanglePosicio())) {
+                b.mou();
+        }
+    }
+
+    /**
      * La nau es mou.
      */
     public void mou() {
