@@ -43,7 +43,7 @@ public abstract class Nau extends CosaMobil {
      * @return Han tocat la nau o no
      */
     @Override
-    public final boolean tocat() {
+    public boolean tocat() {
          setVelocitat(0);
          getImatge().setVisible(false);
          setMort(true);

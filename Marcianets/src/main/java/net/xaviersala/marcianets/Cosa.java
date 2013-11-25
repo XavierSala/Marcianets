@@ -97,6 +97,15 @@ public abstract class Cosa {
    }
 
    /**
+    * Canvia la imatge per una de nova que ja està.
+    * carregada
+    * @param img Imatge a posar
+    */
+   public final void setImatge(final Image img) {
+       imatge.setImage(img);
+   }
+
+   /**
     * Canvia la imatge existent per una de nova des d'un fitxer.
     * @param nomFitxer del fitxer a carregar
     */

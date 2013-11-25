@@ -12,7 +12,7 @@ public class NauEnemiga extends Nau {
     /**
      * Armari d'imatges.
      */
-    private Armari armari = Armari.getInstance();
+    protected  Armari armari = Armari.getInstance();
     /**
      * Cap on es mou si arriba al racó.
      */
@@ -80,6 +80,6 @@ public class NauEnemiga extends Nau {
      */
     private boolean isForaDePantalla() {
         return getImatge().getX() < 0
-                || getDreta() > armari.getPantalla().getWidth();
+                || getDreta() > armari.getPantallaWidth();
     }
 }

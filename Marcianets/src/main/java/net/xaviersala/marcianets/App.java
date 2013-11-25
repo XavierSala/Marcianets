@@ -78,8 +78,6 @@ public class App extends GraphicsProgram {
             armari.mou();
         }
 
-
-        // System.out.println("Hello World!");
     }
 
 
@@ -101,6 +99,8 @@ public class App extends GraphicsProgram {
         for (int i = 0; i < NUMNAUS; i++) {
             armari.addNau("enemic1.gif", 1, POSICIOCINCUANTA * i, 0);
         }
+        armari.addNau("enemic2.gif", 2, POSICIOCINCUANTA,
+                POSICIOCINCUANTA);
     }
 
 
@@ -125,6 +125,7 @@ public class App extends GraphicsProgram {
         final String[] imatges = {"nau.gif",
                 "enemic1.gif",
                 "enemic2.gif",
+                "enemic2b.gif",
                 "bala.jpg"};
 
         armari.setPantalla(this);
@@ -163,6 +164,8 @@ public class App extends GraphicsProgram {
             protagonista.setDireccio(DIRECCIODRETA);
             protagonista.setVelocitat(2);
             break;
+        case KeyEvent.VK_R:
+            ((NauAmiga) protagonista).recarrega();
         default:
             break;
         }

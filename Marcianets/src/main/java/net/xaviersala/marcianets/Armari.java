@@ -75,6 +75,18 @@ public final class Armari {
     }
 
     /**
+     * @return amplada de la pantalla.
+     */
+    public double getPantallaWidth() {
+        return pantalla.getWidth();
+    }
+    /**
+     * @return altura de la pantalla.
+     */
+    public double getPantallaHeight() {
+        return pantalla.getHeight();
+    }
+    /**
      * Afegir un objecte estàtic al joc.
      * @param quina per definir quina imatge del cowboy afegim
      * @param x posició x
@@ -104,6 +116,10 @@ public final class Armari {
             break;
         case 1:
             c = new NauEnemiga(getImatge(quina), x, y);
+            break;
+        case 2:
+            c = new NauEnemigaForta(getImatge(quina), x, y);
+            break;
         default:
             break;
         }
@@ -218,10 +234,7 @@ public final class Armari {
                 if (p instanceof Bala) {
                      if (!dinsPantalla(p) || balaXoca((Bala) p)) {
                          removeBala((Bala) p);
-                         coses.remove(p);
-                         // TODO He de restaurar el carregador del protagonista
-                         // Com?
-                         // protagonista.recarrega();
+                         coses.remove(p);                         
                    }
                 }
             }
