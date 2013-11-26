@@ -123,6 +123,8 @@ public final class Armari {
         case NAUENEMIGAFORTA:
             c = new NauEnemigaForta(getImatge(tipus.getFitxer()), x, y);
             break;
+        case NAUENEMIGAKAMIKAZE:
+            c = new NauEnemigaKamikaze(getImatge(tipus.getFitxer()), x, y);
         default:
             break;
         }
@@ -140,7 +142,7 @@ public final class Armari {
      * @return Retorna la bala generada
      */
     public Bala addBala(final String quin, final double x, final double y,
-            final double d) {
+            final Direccio d) {
         Bala b = new Bala(getImatge(quin), x, y, d);
         coses.add(b);
         pantalla.add(b.getImatge());

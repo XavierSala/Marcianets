@@ -29,14 +29,7 @@ public class App extends GraphicsProgram {
      * Número de plantes.
      */
     private static final int NUMNAUS = 10;
-    /**
-     * Direcció esquerra.
-     */
-    private static final int DIRECCIOESQUERRA = 180;
-    /**
-     * Direcció dreta.
-     */
-    private static final int DIRECCIODRETA = 0;
+
     /**
      * Posició inicial (una mica triada a l'atzar).
      */
@@ -59,6 +52,11 @@ public class App extends GraphicsProgram {
      * Generador de números.
      */
      private Random r;
+
+     /**
+      * Label amb les bales
+      */
+     GLabel balesDisponibles;
      /**
       * Execució del programa.
       */
@@ -74,6 +72,8 @@ public class App extends GraphicsProgram {
 
         afegirNausEnemigues();
 
+        creaMarcador();
+        canviaMarcador();
 
         while (true) {
             pause(RETARD);
@@ -104,6 +104,8 @@ public class App extends GraphicsProgram {
         }
         armari.addNau(TipusNau.NAUENEMIGAFORTA,
                 POSICIOCINCUANTA, POSICIOCINCUANTA);
+        armari.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
+                POSICIOCINCUANTA, POSICIOCINCUANTA * 2);
     }
 
 
@@ -152,23 +154,41 @@ public class App extends GraphicsProgram {
         switch(e.getKeyCode()) {
         case KeyEvent.VK_UP:
            protagonista.dispara();
-           protagonista.setVelocitat(0);
+           canviaMarcador();
             break;
         case KeyEvent.VK_LEFT:
-            protagonista.setDireccio(DIRECCIOESQUERRA);
+            protagonista.setDireccio(Direccio.ESQUERRA);
             protagonista.setVelocitat(2);
             break;
         case KeyEvent.VK_RIGHT:
-            protagonista.setDireccio(DIRECCIODRETA);
+            protagonista.setDireccio(Direccio.DRETA);
             protagonista.setVelocitat(2);
+
             break;
         case KeyEvent.VK_R:
             ((NauAmiga) protagonista).recarrega();
+            canviaMarcador();
         default:
             break;
         }
     }
 
+    /**
+     * Actualitza el marcador de bales.
+     */
+    private void canviaMarcador() {
+        String numBales = ((NauAmiga) protagonista).getBalesDisponibles();
+        balesDisponibles.setLabel("bales:" + numBales);
+    }
+
+    /**
+     * Crea el marcador.
+     */
+    private void creaMarcador() {
+        balesDisponibles = new GLabel("bales: 0");
+        add(balesDisponibles, getWidth() - balesDisponibles.getWidth(),
+                getHeight() - balesDisponibles.getAscent());
+    }
     /**
      * Deixa anar la tecla. Només té efecte per la tecla d'avançar.
      * @param e event

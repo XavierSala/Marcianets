@@ -9,6 +9,12 @@ import org.junit.Test;
 
 import acm.graphics.GImage;
 
+/**
+ * Defineix el test de les naus enemigues.
+ *
+ * @author xavier
+ *
+ */
 public class NauEnemigaTest {
 
     GImage imatgeNau;

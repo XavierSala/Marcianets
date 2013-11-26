@@ -10,10 +10,7 @@ import java.awt.Image;
  *
  */
 public class NauAmiga extends Nau {
-    /**
-     * Armari d'imatges.
-     */
-    private Armari armari = Armari.getInstance();
+
     /**
      * número màxim de bales del carregador.
      */
@@ -22,10 +19,14 @@ public class NauAmiga extends Nau {
      * Bales que queden en el carregador.
      */
     private int balesDisponibles;
+
     /**
-     * Direcció de les bales.
+     * @return the balesDisponibles
      */
-    private static final int DIRECCIOBALES = 90;
+    public final String getBalesDisponibles() {
+        return Integer.toString(balesDisponibles);
+    }
+
     /**
      * Crea una nau enemiga.
      * @param img Imatge
@@ -47,7 +48,7 @@ public class NauAmiga extends Nau {
 
         if (balesDisponibles > 0) {
             Bala b = armari.addBala("bala.jpg",  getEsquerra(), getDalt(),
-                    DIRECCIOBALES);
+                    Direccio.AMUNT);
             balesDisponibles--;
             treuBalaDeLaNau((Cosa) this, b);
         }

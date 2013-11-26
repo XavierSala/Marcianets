@@ -25,7 +25,11 @@ public enum TipusNau {
     /**
      * Canvi d'imatge per la nau enemiga forta.
      */
-    NAUENEMIGAFORTA2("enemic2b.gif");
+    NAUENEMIGAFORTA2("enemic2b.gif"),
+    /**
+     * Nau enemiga kamikaze.
+     */
+    NAUENEMIGAKAMIKAZE("enemic3.gif");
 
     /**
      * Tipus de nau que té la variable.

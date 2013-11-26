@@ -9,30 +9,16 @@ import java.awt.Image;
  *
  */
 public class NauEnemiga extends Nau {
-    /**
-     * Armari d'imatges.
-     */
-    protected  Armari armari = Armari.getInstance();
+
     /**
      * Cap on es mou si arriba al racó.
      */
     private double moviment;
-    /**
-     * Direcció de les bales.
-     */
-    private static final int DIRECCIOBALES = 270;
-    /**
-     * Volta sencera.
-     */
-    private static final int VOLTA  = 360;
-    /**
-     * Mitja volta.
-     */
-    private static final int MITJAVOLTA = 180;
+
     /**
      * Velocitat de la nau.
      */
-    private static final int VELOCITATNAU = 4;
+    public static final int VELOCITATNAU = 4;
     /**
      * Crea una nau enemiga.
      * @param img imatge
@@ -41,7 +27,7 @@ public class NauEnemiga extends Nau {
      */
     public NauEnemiga(final Image img, final double x, final double y) {
         super(img, x, y);
-        setDireccio(0);
+        setDireccio(Direccio.DRETA);
         setVelocitat(VELOCITATNAU);
         moviment = 1;
     }
@@ -51,7 +37,7 @@ public class NauEnemiga extends Nau {
      */
     public final void dispara() {
         Bala b = armari.addBala("bala.jpg",  getEsquerra(), getDalt(),
-                DIRECCIOBALES);
+                Direccio.AVALL);
         treuBalaDeLaNau((Cosa) this, b);
     }
 
@@ -70,7 +56,14 @@ public class NauEnemiga extends Nau {
      * Gira cap a l'altre costat.
      */
     private void gira() {
-        setDireccio((getDireccio() + MITJAVOLTA) % VOLTA);
+        Direccio novaDireccio;
+        if (getDireccio() == Direccio.ESQUERRA.getValor()) {
+            novaDireccio = Direccio.DRETA;
+        } else {
+            novaDireccio = Direccio.ESQUERRA;
+        }
+        setDireccio(novaDireccio);
+       // setDireccio((getDireccio() + Direccions.ESQUERRA) % VOLTA);
         mouA(0, getAltura() * moviment);
         moviment *= -1;
     }

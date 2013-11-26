@@ -9,6 +9,10 @@ import java.awt.Image;
  *
  */
 public abstract class Nau extends CosaMobil {
+    /**
+     * Armari d'imatges.
+     */
+    protected  Armari armari = Armari.getInstance();
 
     /**
      * Construeix una nau a partir de la seva imatge.

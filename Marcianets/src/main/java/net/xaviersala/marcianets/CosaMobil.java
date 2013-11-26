@@ -12,10 +12,7 @@ import acm.graphics.GImage;
  *
  */
 public abstract class CosaMobil extends Cosa {
-    /**
-     * Defineix el que és mitja volta.
-     */
-    private static final int ANGLESCERCLE = 360;
+
     /**
      * Direcció del moviment en graus.
      */
@@ -32,7 +29,6 @@ public abstract class CosaMobil extends Cosa {
         super(fitxer);
         velocitat = 0;
         direccio = 0;
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -70,10 +66,10 @@ public abstract class CosaMobil extends Cosa {
 
     /**
      * Defineix una nova direcció.
-     * @param angle en graus de la nova direcció
+     * @param dreta Direcció en que es vol moure
      */
-    public final void setDireccio(final double angle) {
-        direccio = angle;
+    public final void setDireccio(final Direccio dreta) {
+        direccio = dreta.getValor();
     }
 
     /**
@@ -89,11 +85,11 @@ public abstract class CosaMobil extends Cosa {
      * @param objectiu direcció en la que he de girar
      */
     public final void giraDireccio(final double objectiu) {
-        double angle = (direccio + objectiu) % ANGLESCERCLE;
+        double angle = (direccio + objectiu) % Direccio.VOLTA.getValor();
         if (angle >= 0) {
             direccio = angle;
         } else {
-            direccio = (angle + ANGLESCERCLE);
+            direccio = (angle + Direccio.VOLTA.getValor());
         }
     }
 
