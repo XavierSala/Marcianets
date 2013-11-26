@@ -7,7 +7,7 @@ import acm.graphics.GLabel;
 import acm.program.GraphicsProgram;
 
 /**
- * Hello world!
+ * Joc de marcianets.
  *
  */
 public class App extends GraphicsProgram {
@@ -64,6 +64,8 @@ public class App extends GraphicsProgram {
       */
     public final void run() {
 
+        armari.setPantalla(this);
+
         carregarImatges();
 
         clicaPerComencar();
@@ -85,7 +87,7 @@ public class App extends GraphicsProgram {
      * Afegir la nau principal del joc.
      */
     private void afegirProtagonista() {
-        int principal = armari.addNau("nau.gif", 0,
+        int principal = armari.addNau(TipusNau.NAUAMIGA,
                 posicioAleatoria(SCREENWIDTH),
                 SCREENHEIGHT - POSICIOCINCUANTA);
         protagonista =  (Nau) armari.getElement(principal);
@@ -97,10 +99,11 @@ public class App extends GraphicsProgram {
      */
     private void afegirNausEnemigues() {
         for (int i = 0; i < NUMNAUS; i++) {
-            armari.addNau("enemic1.gif", 1, POSICIOCINCUANTA * i, 0);
+            armari.addNau(TipusNau.NAUENEMIGANORMAL,
+                    POSICIOCINCUANTA * i, 0);
         }
-        armari.addNau("enemic2.gif", 2, POSICIOCINCUANTA,
-                POSICIOCINCUANTA);
+        armari.addNau(TipusNau.NAUENEMIGAFORTA,
+                POSICIOCINCUANTA, POSICIOCINCUANTA);
     }
 
 
@@ -122,16 +125,11 @@ public class App extends GraphicsProgram {
      * es pugui gestionar la pantalla des d'ell.
      */
     private void carregarImatges() {
-        final String[] imatges = {"nau.gif",
-                "enemic1.gif",
-                "enemic2.gif",
-                "enemic2b.gif",
-                "bala.jpg"};
 
-        armari.setPantalla(this);
+        armari.setImatge("bala.jpg");
 
-        for (String imatge: imatges) {
-            armari.setImatge(imatge);
+        for (TipusNau d : TipusNau.values()) {
+            armari.setImatge(d.getFitxer());
         }
     }
 

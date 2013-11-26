@@ -61,6 +61,10 @@ public final class Armari {
 
     /**
      * Referència a l'escriptori.
+     *
+     * És necessari perquè aquest objecte pugui pintar les imatges per
+     * pantalla
+     *
      * @param ref Pantalla on s'escriurà
      */
     public void setPantalla(final App ref) {
@@ -100,25 +104,24 @@ public final class Armari {
     }
 
     /**
-     * Afegir un Cowboy.
-     * @param quina per definir quina imatge del cowboy afegim
-     * @param tipus Tipus de nau a crear (amic: 0, enemic: 1)
+     * Afegir una Nau.
+     * @param tipus Tipus de nau a crear
      * @param x posició x
      * @param y posició y
-     * @return posició on s'afegeix
+     * @return posició on s'afegeix dins de l'array de components
      */
-    public int addNau(final String quina, final int tipus,
+    public int addNau(final TipusNau tipus,
             final double x, final double y) {
         Cosa c = null;
         switch (tipus) {
-        case 0:
-            c = new NauAmiga(getImatge(quina), x, y);
+        case NAUAMIGA:
+            c = new NauAmiga(getImatge(tipus.getFitxer()), x, y);
             break;
-        case 1:
-            c = new NauEnemiga(getImatge(quina), x, y);
+        case NAUENEMIGANORMAL:
+            c = new NauEnemiga(getImatge(tipus.getFitxer()), x, y);
             break;
-        case 2:
-            c = new NauEnemigaForta(getImatge(quina), x, y);
+        case NAUENEMIGAFORTA:
+            c = new NauEnemigaForta(getImatge(tipus.getFitxer()), x, y);
             break;
         default:
             break;
@@ -234,7 +237,7 @@ public final class Armari {
                 if (p instanceof Bala) {
                      if (!dinsPantalla(p) || balaXoca((Bala) p)) {
                          removeBala((Bala) p);
-                         coses.remove(p);                         
+                         coses.remove(p);
                    }
                 }
             }

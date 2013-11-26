@@ -45,7 +45,6 @@ public class NauEnemigaTest {
      */
     @Test
     public void testDispara() {
-        
 
         fail("Not implemented");
     }
