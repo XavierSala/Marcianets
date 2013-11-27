@@ -12,7 +12,7 @@ public class NauEnemigaKamikaze extends NauEnemiga {
     /**
      * % de provabilitat de caure.
      */
-    private static final double PROVABILITATATACAR = 5;
+    private static final double PROVABILITATATACAR = 2;
     /**
      * Mil.
      */

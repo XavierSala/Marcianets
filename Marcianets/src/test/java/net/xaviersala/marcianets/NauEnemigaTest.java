@@ -47,7 +47,7 @@ public class NauEnemigaTest {
     }
 
     /**
-     * Comprova si dispara en la direcció correcta
+     * Comprova si dispara en la direcció correcta.
      */
     @Test
     public void testDispara() {

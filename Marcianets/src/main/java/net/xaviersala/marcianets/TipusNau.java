@@ -27,6 +27,10 @@ public enum TipusNau {
      */
     NAUENEMIGAFORTA2("enemic2b.gif"),
     /**
+     * Segon canvi d'imate per la nau enemiga forta.
+     */
+    NAUENEMIGAFORTA3("enemic2c.gif"),
+    /**
      * Nau enemiga kamikaze.
      */
     NAUENEMIGAKAMIKAZE("enemic3.gif");

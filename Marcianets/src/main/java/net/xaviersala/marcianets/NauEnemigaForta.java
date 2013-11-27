@@ -36,9 +36,17 @@ public class NauEnemigaForta extends NauEnemiga {
         public final boolean tocat() {
            tocs--;
            if (tocs > 0) {
-               setImatge(armari.getImatge("enemic2b.gif"));
-               return false;
-           }
+               switch (tocs) {
+               case 2:
+                   setImatge(armari.getImatge("enemic2b.gif"));
+                   break;
+               case 1:
+                   setImatge(armari.getImatge("enemic2c.gif"));
+                   break;
+               default:
+               }
+            return false;
+          }
          return super.tocat();
         }
 

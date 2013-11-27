@@ -54,9 +54,9 @@ public class App extends GraphicsProgram {
      private Random r;
 
      /**
-      * Label amb les bales
+      * Label amb les bales que queden.
       */
-     GLabel balesDisponibles;
+     private GLabel balesDisponibles;
      /**
       * Execució del programa.
       */
@@ -98,19 +98,28 @@ public class App extends GraphicsProgram {
      * Agegir naus enemigues.
      */
     private void afegirNausEnemigues() {
+        int lloc = PosicioFiles.TERCERAFILA.getPosicio();
         for (int i = 0; i < NUMNAUS; i++) {
             armari.addNau(TipusNau.NAUENEMIGANORMAL,
-                    POSICIOCINCUANTA * i, 0);
+                    POSICIOCINCUANTA * i, lloc);
         }
-        armari.addNau(TipusNau.NAUENEMIGAFORTA,
-                POSICIOCINCUANTA, POSICIOCINCUANTA);
+        lloc = PosicioFiles.SEGONAFILA.getPosicio();
+        for (int i = 0; i < NUMNAUS; i++) {
+            armari.addNau(TipusNau.NAUENEMIGAFORTA,
+                    POSICIOCINCUANTA * i, lloc);
+        }
+        lloc = PosicioFiles.PRIMERAFILA.getPosicio();
         armari.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
-                POSICIOCINCUANTA, POSICIOCINCUANTA * 2);
+                0, lloc);
+        armari.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
+                getWidth() - POSICIOCINCUANTA, lloc);
+        armari.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
+                getWidth() / 2, lloc);
     }
 
 
     /**
-     * @return
+     * Clica per començar.
      */
     private void clicaPerComencar() {
         GLabel label = new GLabel("Clica per començar");

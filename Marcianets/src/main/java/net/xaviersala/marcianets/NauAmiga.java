@@ -58,7 +58,7 @@ public class NauAmiga extends Nau {
      * Recarrega una bala.
      */
     public final void recarrega() {
-        if (balesDisponibles <= MAXIMBALES) {
+        if (balesDisponibles < MAXIMBALES) {
                 balesDisponibles++;
         }
     }
