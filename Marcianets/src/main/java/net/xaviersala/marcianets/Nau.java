@@ -49,7 +49,8 @@ public abstract class Nau extends CosaMobil {
     @Override
     public boolean tocat() {
          setVelocitat(0);
-         getImatge().setVisible(false);
+         // getImatge().setVisible(false);
+         setImatge(armari.getImatge("explosio.gif"));
          setMort(true);
          return true;
     }

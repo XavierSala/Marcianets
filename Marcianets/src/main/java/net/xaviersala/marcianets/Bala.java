@@ -25,18 +25,6 @@ public class Bala extends CosaMobil {
         setTipus("Bala");
     }
 
-    /**
-     * Construeix una bala que anirà en la direcció especificada.
-     * @param fitxer Fitxer amb la imatge de la bala
-     * @param capOn Direcció en que es mou la bala
-     * @param x posició
-     * @param y posició
-     */
-    public Bala(final String fitxer, final double x, final double y,
-            final Direccio capOn) {
-        super("bala.jpg");
-        inicialitza(capOn);
-    }
 
     /**
      * Construeix una bala a partir d'una imatge

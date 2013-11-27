@@ -47,7 +47,7 @@ public class NauAmiga extends Nau {
     public final void dispara() {
 
         if (balesDisponibles > 0) {
-            Bala b = armari.addBala("bala.jpg",  getEsquerra(), getDalt(),
+            Bala b = armari.addBala("bala.gif",  getEsquerra(), getDalt(),
                     Direccio.AMUNT);
             balesDisponibles--;
             treuBalaDeLaNau((Cosa) this, b);

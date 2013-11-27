@@ -128,8 +128,11 @@ public final class Armari {
         default:
             break;
         }
-        coses.add(c);
-        pantalla.add(c.getImatge());
+
+        if (c != null) {
+            coses.add(c);
+            pantalla.add(c.getImatge());
+        }
         return coses.size() - 1;
     }
 
@@ -231,8 +234,9 @@ public final class Armari {
             Cosa p = it.next();
 
             if (p.isMort()) {
+                // Eliminar els elements morts
+                removeElement(p);
                 coses.remove(p);
-                // it.remove();
             } else if (p instanceof CosaMobil) {
                 ((CosaMobil) p).mou();
 

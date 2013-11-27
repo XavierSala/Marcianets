@@ -1,5 +1,6 @@
 package net.xaviersala.marcianets;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
@@ -137,7 +138,8 @@ public class App extends GraphicsProgram {
      */
     private void carregarImatges() {
 
-        armari.setImatge("bala.jpg");
+        armari.setImatge("bala.gif"); 
+        armari.setImatge("explosio.gif");
 
         for (TipusNau d : TipusNau.values()) {
             armari.setImatge(d.getFitxer());
