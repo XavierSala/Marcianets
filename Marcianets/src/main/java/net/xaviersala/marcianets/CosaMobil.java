@@ -16,7 +16,7 @@ public abstract class CosaMobil extends Cosa {
     /**
      * Direcció del moviment en graus.
      */
-    private double direccio;
+    private Direccio direccio;
     /**
      * Velocitat del moviment.
      */
@@ -28,7 +28,7 @@ public abstract class CosaMobil extends Cosa {
     public CosaMobil(final String fitxer) {
         super(fitxer);
         velocitat = 0;
-        direccio = 0;
+        direccio = Direccio.DRETA;
     }
 
     /**
@@ -38,7 +38,7 @@ public abstract class CosaMobil extends Cosa {
     public CosaMobil(final Image img) {
         super(img);
         velocitat = 0;
-        direccio = 0;
+        direccio = Direccio.DRETA;
     }
 
     /**
@@ -53,7 +53,7 @@ public abstract class CosaMobil extends Cosa {
     public CosaMobil(final Image img, final double x, final double y) {
         super(img, x, y);
         velocitat = 0;
-        direccio = 0;
+        direccio = Direccio.DRETA;
     }
 
     /**
@@ -61,7 +61,15 @@ public abstract class CosaMobil extends Cosa {
      */
     public void mou() {
         GImage dibuix = getImatge();
-        dibuix.movePolar(velocitat, direccio);
+        dibuix.movePolar(velocitat, direccio.getValor());
+    }
+
+    /**
+     * Els personatges poden tornar enrere.
+     */
+    public final void mouUndo() {
+        GImage dibuix = getImatge();
+        dibuix.movePolar(velocitat * -1, direccio.getValor());
     }
 
     /**
@@ -69,28 +77,15 @@ public abstract class CosaMobil extends Cosa {
      * @param dreta Direcció en que es vol moure
      */
     public final void setDireccio(final Direccio dreta) {
-        direccio = dreta.getValor();
+        direccio = dreta;
     }
 
     /**
      * Retorna la direcció en la que s'està movent.
      * @return la direcció en graus
      */
-    public final double getDireccio() {
+    public final Direccio getDireccio() {
         return direccio;
-    }
-
-    /**
-     * Gira la direcció un número determinat de graus.
-     * @param objectiu direcció en la que he de girar
-     */
-    public final void giraDireccio(final double objectiu) {
-        double angle = (direccio + objectiu) % Direccio.VOLTA.getValor();
-        if (angle >= 0) {
-            direccio = angle;
-        } else {
-            direccio = (angle + Direccio.VOLTA.getValor());
-        }
     }
 
     /**

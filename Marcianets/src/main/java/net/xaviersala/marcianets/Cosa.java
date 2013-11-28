@@ -122,6 +122,21 @@ public abstract class Cosa {
    }
 
    /**
+    * Canviar només la posició Y.
+    * @param y nova posició de Y
+    */
+   public final void setY(final double y) {
+       imatge.setLocation(imatge.getX(), y);
+   }
+
+   /**
+    * Canviar només la posició X.
+    * @param x nova posició de X
+    */
+   public final void setX(final double x) {
+       imatge.setLocation(x, imatge.getY());
+   }
+   /**
     * Mou el personate en la direcció i píxels especificats.
     * @param x direcció x
     * @param y direcció y

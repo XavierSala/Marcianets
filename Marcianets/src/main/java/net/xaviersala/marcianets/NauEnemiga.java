@@ -19,6 +19,11 @@ public class NauEnemiga extends Nau {
      * Velocitat de la nau.
      */
     public static final int VELOCITATNAU = 4;
+
+    /**
+     * Provabilitat d'atacar sobre 1000
+     */
+    private static final double PROVABILITATATACAR = 0.002;
     /**
      * Crea una nau enemiga.
      * @param img imatge
@@ -33,12 +38,25 @@ public class NauEnemiga extends Nau {
     }
 
     /**
-     * La nau dispara cap avall.
+     * Comprova si ha de disparar o no.
+     * @return Bala disparada
      */
-    public final void dispara() {
-        Bala b = armari.addBala("bala.jpg",  getEsquerra(), getDalt(),
-                Direccio.AVALL);
-        treuBalaDeLaNau((Cosa) this, b);
+    public Bala comprovaSiDispara() {
+        Bala bala = null;
+        if ((Math.random()) < PROVABILITATATACAR) {
+            bala = dispara();
+        }
+        return  bala;
+    }
+    /**
+     * La nau dispara cap avall.
+     * @return retona la bala;
+     */
+    public final Bala dispara() {
+        Bala b = (Bala) ObjectesFactory.build(TipusNau.BALA,
+                getEsquerra(), getDalt(), Direccio.AVALL);
+        separaObjecteFinsQueNoXoqui((CosaMobil) b);
+        return b;
     }
 
     /**
@@ -46,33 +64,31 @@ public class NauEnemiga extends Nau {
      */
     public void mou() {
         super.mou();
-
-        if (isForaDePantalla()) {
-            gira();
-        }
      }
+
 
     /**
      * Gira cap a l'altre costat.
      */
-    private void gira() {
+    public void gira() {
         Direccio novaDireccio;
-        if (getDireccio() == Direccio.ESQUERRA.getValor()) {
+        if (getDireccio() == Direccio.ESQUERRA) {
             novaDireccio = Direccio.DRETA;
         } else {
             novaDireccio = Direccio.ESQUERRA;
         }
         setDireccio(novaDireccio);
-       // setDireccio((getDireccio() + Direccions.ESQUERRA) % VOLTA);
-        mouA(0, getAltura() * moviment);
+
+        // He hagut de comprovar que no surt de la pantalla per culpa
+        // dels objectes kami...
+        double desplasament = getAltura() * -1;
+        if ((getDalt() + desplasament) < 0) {
+            moviment *= -1;
+            desplasament *= -1;
+        }
+        mouA(0, moviment);
         moviment *= -1;
     }
 
-    /**
-     * @return Si ha sortit de la pantalla.
-     */
-    private boolean isForaDePantalla() {
-        return getImatge().getX() < 0
-                || getDreta() > armari.getPantallaWidth();
-    }
+
 }

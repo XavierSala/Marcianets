@@ -27,8 +27,8 @@ public class NauEnemigaTest {
     @Before
     public final void setUp() throws Exception {
 
-        Armari armari = mock(Armari.class);
-        when(armari.getPantallaWidth()).thenReturn(800d);
+//        Armari armari = mock(Armari.class);
+//        when(armari.getPantallaWidth()).thenReturn(800d);
 
         imatgeNau = new GImage("nau.gif");
         // armari.setPantalla(ref);
@@ -39,10 +39,6 @@ public class NauEnemigaTest {
      */
     @Test
     public final void testMou() {
-        NauEnemiga n = new NauEnemiga(imatgeNau.getImage(), 180, 0);
-        assertTrue(n.getDireccio() == 0);
-        n.mou();
-        assertTrue(n.getDireccio() == 180);
 
     }
 

@@ -12,12 +12,7 @@ public class NauEnemigaKamikaze extends NauEnemiga {
     /**
      * % de provabilitat de caure.
      */
-    private static final double PROVABILITATATACAR = 2;
-    /**
-     * Mil.
-     */
-    private static final double MIL = 1000;
-
+    private static final double PROVABILITATATACAR = 0.002;
     /**
      * Posició on està la nau abans d'atacar.
      */
@@ -32,7 +27,7 @@ public class NauEnemigaKamikaze extends NauEnemiga {
     public NauEnemigaKamikaze(final Image img,
             final double x, final double y) {
         super(img, x, y);
-        liniaBase = y;
+        liniaBase = y + VELOCITATNAU;
     }
 
     /**
@@ -40,26 +35,32 @@ public class NauEnemigaKamikaze extends NauEnemiga {
      * cap avall.
      */
     public final void mou() {
-        super.mou();
 
         comprovaSiAtaca();
-
-        comprovaSiSurtDePantalla();
-
+        super.mou();
      }
 
     /**
      * Comprova si la nau surt de la pantalla i ho evita.
      */
-    private void comprovaSiSurtDePantalla() {
-        if (getBaix() > armari.getPantallaHeight()) {
-            setDireccio(Direccio.AMUNT);
-        }
+    public final void gira() {
 
-        if (getDalt() <= liniaBase
-                && getDireccio() == Direccio.AMUNT.getValor()) {
-            setDireccio(Direccio.ESQUERRA);
-            setVelocitat(VELOCITATNAU);
+        switch (getDireccio()) {
+
+        case AVALL:
+            setDireccio(Direccio.AMUNT);
+            break;
+        case AMUNT:
+            if (getDalt() <= liniaBase) {
+                setY(liniaBase);
+                setDireccio(Direccio.ESQUERRA);
+                setVelocitat(VELOCITATNAU);
+            }
+            break;
+         default:
+             setY(liniaBase);
+             super.gira();
+             break;
         }
     }
 
@@ -67,10 +68,15 @@ public class NauEnemigaKamikaze extends NauEnemiga {
      * Comprova si la nau ha d'atacar o no.
      */
     private void comprovaSiAtaca() {
-        if ((Math.random() * MIL) < PROVABILITATATACAR) {
+        if (Math.random() < PROVABILITATATACAR) {
             setDireccio(Direccio.AVALL);
             setVelocitat(VELOCITATNAU * 2);
         }
+    }
+
+    @Override
+    public final Bala comprovaSiDispara() {
+        return null;
     }
 
 }

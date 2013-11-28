@@ -39,21 +39,19 @@ public class NauAmiga extends Nau {
     }
 
     /**
-     * La nau dispara si té bales disponibles.
-     *
-     * Per evitar que la bala xoqui amb la nau que l'ha fet moc la
-     * bala fins que deixa de tocar.
+     * Dispara si li queden bales.
+     * En cas de no tenir bales es retorna un objecte 'null'
+     * @return bala disparada
      */
-    public final void dispara() {
-
+    @Override
+    public final Bala dispara() {
+        Bala b = null;
         if (balesDisponibles > 0) {
-            Bala b = armari.addBala("bala.gif",  getEsquerra(), getDalt(),
-                    Direccio.AMUNT);
+            b = super.dispara();
             balesDisponibles--;
-            treuBalaDeLaNau((Cosa) this, b);
         }
+        return b;
     }
-
     /**
      * Recarrega una bala.
      */

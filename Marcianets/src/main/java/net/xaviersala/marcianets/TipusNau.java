@@ -11,6 +11,14 @@ package net.xaviersala.marcianets;
  */
 public enum TipusNau {
     /**
+     * Bales.
+     */
+    BALA("bala.gif"),
+    /**
+     * Explosió.
+     */
+    EXPLOSIO("explosio.gif"),
+    /**
      * Naus.
      */
     NAUAMIGA("nau.gif"),

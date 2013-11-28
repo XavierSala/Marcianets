@@ -1,6 +1,5 @@
 package net.xaviersala.marcianets;
 
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
@@ -30,70 +29,45 @@ public class App extends GraphicsProgram {
      * Número de plantes.
      */
     private static final int NUMNAUS = 10;
-
     /**
      * Posició inicial (una mica triada a l'atzar).
      */
     private static final int POSICIOCINCUANTA = 50;
+
     /**
      * Serial ID.
      */
     private static final long serialVersionUID = 5046186790508838483L;
 
-    /**
-     * Classe que conté les imatges del joc.
-     */
-     private Armari armari = Armari.getInstance();
 
      /**
-      * Protagonista del joc que es controla per l'usuari.
+      * Pantalla.
       */
-     private Nau protagonista;
-    /**
-     * Generador de números.
-     */
-     private Random r;
+     private Pantalla escriptori;
 
-     /**
-      * Label amb les bales que queden.
-      */
-     private GLabel balesDisponibles;
      /**
       * Execució del programa.
       */
     public final void run() {
 
-        armari.setPantalla(this);
+        escriptori = new Pantalla(this);
 
-        carregarImatges();
+        ObjectesFactory.carregarImatges();
 
         clicaPerComencar();
 
-        afegirProtagonista();
+        escriptori.addProtagonista();
 
         afegirNausEnemigues();
 
-        creaMarcador();
-        canviaMarcador();
+        escriptori.creaMarcador();
 
         while (true) {
             pause(RETARD);
-            armari.mou();
+            escriptori.mou();
         }
 
     }
-
-
-    /**
-     * Afegir la nau principal del joc.
-     */
-    private void afegirProtagonista() {
-        int principal = armari.addNau(TipusNau.NAUAMIGA,
-                posicioAleatoria(SCREENWIDTH),
-                SCREENHEIGHT - POSICIOCINCUANTA);
-        protagonista =  (Nau) armari.getElement(principal);
-    }
-
 
     /**
      * Agegir naus enemigues.
@@ -101,20 +75,20 @@ public class App extends GraphicsProgram {
     private void afegirNausEnemigues() {
         int lloc = PosicioFiles.TERCERAFILA.getPosicio();
         for (int i = 0; i < NUMNAUS; i++) {
-            armari.addNau(TipusNau.NAUENEMIGANORMAL,
+            escriptori.addNau(TipusNau.NAUENEMIGANORMAL,
                     POSICIOCINCUANTA * i, lloc);
         }
         lloc = PosicioFiles.SEGONAFILA.getPosicio();
         for (int i = 0; i < NUMNAUS; i++) {
-            armari.addNau(TipusNau.NAUENEMIGAFORTA,
+            escriptori.addNau(TipusNau.NAUENEMIGAFORTA,
                     POSICIOCINCUANTA * i, lloc);
         }
         lloc = PosicioFiles.PRIMERAFILA.getPosicio();
-        armari.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
+        escriptori.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
                 0, lloc);
-        armari.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
-                getWidth() - POSICIOCINCUANTA, lloc);
-        armari.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
+        escriptori.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
+                getWidth() - POSICIOCINCUANTA*2, lloc);
+        escriptori.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
                 getWidth() / 2, lloc);
     }
 
@@ -131,30 +105,6 @@ public class App extends GraphicsProgram {
         remove(label);
     }
 
-
-    /**
-     * Carrega les imatges del joc en l'armari i l'inicialitza perquè
-     * es pugui gestionar la pantalla des d'ell.
-     */
-    private void carregarImatges() {
-
-        armari.setImatge("bala.gif"); 
-        armari.setImatge("explosio.gif");
-
-        for (TipusNau d : TipusNau.values()) {
-            armari.setImatge(d.getFitxer());
-        }
-    }
-
-    /**
-     * Obtenir un valor aleatòri.
-     * @param max valor màxim
-     * @return número a retornar
-     */
-    final int posicioAleatoria(final int max) {
-        return r.nextInt(max);
-    }
-
     /**
      * Prem una tecla i es mou en la direcció que toca.
      * @param e event
@@ -164,49 +114,37 @@ public class App extends GraphicsProgram {
 
         switch(e.getKeyCode()) {
         case KeyEvent.VK_UP:
-           protagonista.dispara();
-           canviaMarcador();
+           Bala b = escriptori.getProtagonista().dispara();
+           if (b != null) {
+               escriptori.addBala(b);
+               escriptori.canviaMarcador();
+           }
             break;
         case KeyEvent.VK_LEFT:
-            protagonista.setDireccio(Direccio.ESQUERRA);
-            protagonista.setVelocitat(2);
+            escriptori.getProtagonista().setDireccio(Direccio.ESQUERRA);
+            escriptori.getProtagonista().setVelocitat(2);
             break;
         case KeyEvent.VK_RIGHT:
-            protagonista.setDireccio(Direccio.DRETA);
-            protagonista.setVelocitat(2);
+            escriptori.getProtagonista().setDireccio(Direccio.DRETA);
+            escriptori.getProtagonista().setVelocitat(2);
 
             break;
         case KeyEvent.VK_R:
-            ((NauAmiga) protagonista).recarrega();
-            canviaMarcador();
+            escriptori.getProtagonista().recarrega();
+            escriptori.canviaMarcador();
         default:
             break;
         }
     }
 
-    /**
-     * Actualitza el marcador de bales.
-     */
-    private void canviaMarcador() {
-        String numBales = ((NauAmiga) protagonista).getBalesDisponibles();
-        balesDisponibles.setLabel("bales:" + numBales);
-    }
 
-    /**
-     * Crea el marcador.
-     */
-    private void creaMarcador() {
-        balesDisponibles = new GLabel("bales: 0");
-        add(balesDisponibles, getWidth() - balesDisponibles.getWidth(),
-                getHeight() - balesDisponibles.getAscent());
-    }
     /**
      * Deixa anar la tecla. Només té efecte per la tecla d'avançar.
      * @param e event
      */
     @Override
     public final void keyReleased(final KeyEvent e) {
-            protagonista.setVelocitat(0);
+            escriptori.getProtagonista().setVelocitat(0);
     }
 
     /**
@@ -216,6 +154,6 @@ public class App extends GraphicsProgram {
 
         setSize(SCREENWIDTH, SCREENHEIGHT);
         addKeyListeners(this);
-        r = new Random();
+
     }
 }

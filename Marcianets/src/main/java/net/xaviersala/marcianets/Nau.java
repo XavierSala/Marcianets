@@ -10,11 +10,6 @@ import java.awt.Image;
  */
 public abstract class Nau extends CosaMobil {
     /**
-     * Armari d'imatges.
-     */
-    protected  Armari armari = Armari.getInstance();
-
-    /**
      * Construeix una nau a partir de la seva imatge.
      * @param img imatge.
      */
@@ -49,26 +44,34 @@ public abstract class Nau extends CosaMobil {
     @Override
     public boolean tocat() {
          setVelocitat(0);
-         // getImatge().setVisible(false);
-         setImatge(armari.getImatge("explosio.gif"));
          setMort(true);
          return true;
     }
 
     /**
-     * Les naus normalment han de disparar.
-     */
-    public abstract void dispara();
-
-    /**
-     * Mou la bala fins que no mata al que ha disparat.
-     * @param c cosa que dispara
+     * Mou l'altre objecte fins que no toca a aquest.
      * @param b bala
      */
-    protected final void treuBalaDeLaNau(final Cosa c, final Bala b) {
-        while (b.getRectanglePosicio().intersects(c.getRectanglePosicio())) {
+    protected final void separaObjecteFinsQueNoXoqui(final CosaMobil b) {
+        while (b.getRectanglePosicio().intersects(getRectanglePosicio())) {
                 b.mou();
         }
+    }
+
+    /**
+     * La nau dispara si té bales disponibles.
+     *
+     * Per evitar que la bala xoqui amb la nau que l'ha fet moc la
+     * bala fins que deixa de tocar.
+     * @return retorna la bala creada
+     */
+    public Bala dispara() {
+
+        Bala b = (Bala) ObjectesFactory.build(TipusNau.BALA, getEsquerra(),
+                getDalt(), Direccio.AMUNT);
+        separaObjecteFinsQueNoXoqui((CosaMobil) b);
+
+        return b;
     }
 
     /**

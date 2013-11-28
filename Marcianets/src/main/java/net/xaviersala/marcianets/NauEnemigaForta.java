@@ -38,10 +38,10 @@ public class NauEnemigaForta extends NauEnemiga {
            if (tocs > 0) {
                switch (tocs) {
                case 2:
-                   setImatge(armari.getImatge("enemic2b.gif"));
+                   setImatge(ObjectesFactory.getImatge("enemic2b.gif"));
                    break;
                case 1:
-                   setImatge(armari.getImatge("enemic2c.gif"));
+                   setImatge(ObjectesFactory.getImatge("enemic2c.gif"));
                    break;
                default:
                }
