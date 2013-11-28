@@ -1,12 +1,10 @@
 package net.xaviersala.marcianets;
 
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRectangle;
 
@@ -57,20 +55,20 @@ public class Pantalla {
     /**
      * @return the pantalla
      */
-    public App getPantalla() {
+    public final App getPantalla() {
         return escriptori;
     }
 
     /**
      * @return amplada de la pantalla.
      */
-    public double getPantallaWidth() {
+    public final double getPantallaWidth() {
         return escriptori.getWidth();
     }
     /**
      * @return altura de la pantalla.
      */
-    public double getPantallaHeight() {
+    public final double getPantallaHeight() {
         return escriptori.getHeight();
     }
 
@@ -106,7 +104,7 @@ public class Pantalla {
      * Treure imatge de la pantalla.
      * @param g Imatge a treure
      */
-    public void removeElement(final Cosa g) {
+    public final void removeElement(final Cosa g) {
         escriptori.remove(g.getImatge());
         coses.remove(g);
     }
@@ -189,7 +187,7 @@ public class Pantalla {
                        ((NauEnemiga) p).gira();
                     } else {
                         Bala b = ((NauEnemiga) p).comprovaSiDispara();
-                        if (b!=null) {
+                        if (b != null) {
                             addBala(b);
                         }
                     }
@@ -232,6 +230,11 @@ public class Pantalla {
         return pant.intersects(b.getRectanglePosicio());
     }
 
+    /**
+     * Comprova si l'objecte està dins de la pantalla.
+     * @param b objecte a comprovar
+     * @return l'objecte està dins de la pantalla o no
+     */
     public final boolean totDins(final Cosa b) {
         GRectangle pant  = new GRectangle(0, 0,
                 escriptori.getWidth(), escriptori.getHeight());

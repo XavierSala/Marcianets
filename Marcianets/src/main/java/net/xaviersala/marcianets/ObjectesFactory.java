@@ -12,16 +12,18 @@ import acm.graphics.GImage;
  *
  */
 public final class ObjectesFactory {
-    /**
-     * Singleton.
-     */
-    private static ObjectesFactory instance;
+
+
     /**
      * Lloc on es guarden les imatges.
      */
     private static Hashtable<String, GImage> armari
     = new Hashtable<String, GImage>();
 
+    /**
+     * Evitar la creació d'objectes d'aquest tipus.
+     */
+    private ObjectesFactory() { }
     /**
      * Carregar totes les imatges.
      * @return
