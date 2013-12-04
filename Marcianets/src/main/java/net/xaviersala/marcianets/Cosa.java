@@ -211,6 +211,14 @@ public abstract class Cosa {
         this.mort = estaMort;
     }
 
+    /**
+     * Comprova si el rectangle passat xoca amb l'objecte actual o no.
+     * @param r Rectangle que es vol comprovar
+     * @return retorna si xoca
+     */
+    public final boolean xocaAmb(final GRectangle r) {
+        return imatge.getBounds().intersects(r);
+    }
    /**
     * Indicarà a un objecte que ha estat tocat.
     * @return retorna si l'hem d'eliminar o no.

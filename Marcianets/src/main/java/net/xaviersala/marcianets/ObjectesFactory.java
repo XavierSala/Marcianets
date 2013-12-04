@@ -50,20 +50,21 @@ public final class ObjectesFactory {
      * @param tipus tipus de nau
      * @param x Coordenada x
      * @param y Coordenada y
-     * @param direccio Direcció si s'escau
      * @return L'objecte creat
      */
     public static Cosa build(final TipusNau tipus, final double x,
-            final double y, final Direccio direccio) {
+            final double y) {
 
         if (armari.size() == 0) {
             carregarImatges();
         }
         Cosa c = null;
         switch (tipus) {
-        case BALA:
-            c = new Bala(armari.get(tipus.getFitxer()).getImage(), x, y,
-                    direccio);
+        case BALAAMIGA:
+            c = new BalaAmiga(armari.get(tipus.getFitxer()).getImage(), x, y);
+            break;
+        case BALAENEMIGA:
+            c = new BalaEnemiga(armari.get(tipus.getFitxer()).getImage(), x, y);
             break;
         case NAUAMIGA:
             c = new NauAmiga(armari.get(tipus.getFitxer()).getImage(), x, y);

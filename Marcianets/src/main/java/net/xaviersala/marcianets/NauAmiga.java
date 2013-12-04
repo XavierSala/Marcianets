@@ -44,10 +44,12 @@ public class NauAmiga extends Nau {
      * @return bala disparada
      */
     @Override
-    public final Bala dispara() {
-        Bala b = null;
+    public final BalaAmiga dispara() {
+        BalaAmiga b = null;
         if (balesDisponibles > 0) {
-            b = super.dispara();
+            b = (BalaAmiga) ObjectesFactory.build(TipusNau.BALAAMIGA,
+                    getEsquerra(), getDalt());
+            // separaObjecteFinsQueNoXoqui((CosaMobil) b);
             balesDisponibles--;
         }
         return b;

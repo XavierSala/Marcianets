@@ -7,8 +7,17 @@ package net.xaviersala.marcianets;
  *
  */
 public enum PosicioFiles {
+    /**
+     * Primera fila.
+     */
     PRIMERAFILA(0),
+    /**
+     * Segona fila.
+     */
     SEGONAFILA(50),
+    /**
+     * Tercera fila.
+     */
     TERCERAFILA(100);
 
     /**

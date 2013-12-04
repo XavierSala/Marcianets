@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import acm.graphics.GImage;
 import acm.graphics.GLabel;
 import acm.graphics.GRectangle;
 
@@ -41,6 +42,10 @@ public class Pantalla {
      * Generador de números.
      */
      private Random r;
+     /**
+      * Quantitat de naus enemigues.
+      */
+    private int numeroNausEnemigues;
 
     /**
      * Crea una pantalla.
@@ -50,6 +55,7 @@ public class Pantalla {
         escriptori = app;
         coses = new  CopyOnWriteArrayList<Cosa>();
         r = new Random();
+        numeroNausEnemigues = 0;
     }
 
     /**
@@ -70,6 +76,16 @@ public class Pantalla {
      */
     public final double getPantallaHeight() {
         return escriptori.getHeight();
+    }
+
+    /**
+     * Comprova si s'ha acabat la partida.
+     * Només pot ser si han mort el protagonista o bé s'han acabat les
+     * naus enemigues
+     * @return si s'ha acabat la partida
+     */
+    public final boolean partidaAcabada() {
+        return (protagonista.isMort() || numeroNausEnemigues == 0);
     }
 
     /**
@@ -155,11 +171,12 @@ public class Pantalla {
     public final int addNau(final TipusNau tipus,
             final double x, final double y) {
 
-        Cosa c = ObjectesFactory.build(tipus, x, y, Direccio.ESQUERRA);
+        Cosa c = ObjectesFactory.build(tipus, x, y);
         if (c != null) {
             coses.add(c);
             escriptori.add(c.getImatge());
         }
+        numeroNausEnemigues++;
         return coses.size() - 1;
     }
 
@@ -173,13 +190,31 @@ public class Pantalla {
 
             if (p.isMort()) {
                 // Eliminar els elements morts
+                if (p instanceof NauEnemiga) {
+                    numeroNausEnemigues--;
+                }
                 removeElement(p);
             } else if (p instanceof CosaMobil) {
                 CosaMobil m = (CosaMobil) p;
                 m.mou();
                 if (p instanceof Bala) {
-                    if (!dinsPantalla(p) || balaXoca((Bala) p)) {
+                    if (!dinsPantalla(p)) {
                        removeElement(p);
+                   } else {
+                       if ((p instanceof BalaAmiga)) {
+                           if (comprovaXocBala((Bala) p)) {
+                               removeElement(p);
+                           }
+                       } else {
+                           if (comprovaBalaProtagonista((Bala) p)) {
+                               GImage explosio = new GImage(
+                                    ObjectesFactory.getImatge("explosio.gif"),
+                                    p.getEsquerra(), p.getDalt());
+                               escriptori.add(explosio);
+                               removeElement(p);
+
+                           }
+                       }
                    }
                 } else if (p instanceof NauEnemiga) {
                     if (!totDins(p)) {
@@ -197,16 +232,33 @@ public class Pantalla {
     }
 
     /**
+     * Comprova si la bala xoca amb el protagonista o no.
+     * @param p Bala que es comprova
+     * @return si ha xocat o no
+     */
+    private boolean comprovaBalaProtagonista(final Bala p) {
+        if (protagonista.xocaAmb(p.getRectanglePosicio())) {
+            protagonista.tocat();
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Comprova si la bala xoca amb un 'personatge'.
      * @param bala La bala que comprovem
      * @return si ha xocat
      */
-    public final boolean balaXoca(final Bala bala) {
+    public final boolean comprovaXocBala(final Bala bala) {
         GRectangle rectBala = bala.getRectanglePosicio();
 
         for (Cosa personatge: coses) {
+            if (personatge instanceof NauAmiga) {
+                continue;
+            }
+
             if (!(personatge instanceof Bala)) {
-                if (personatge.getRectanglePosicio().intersects(rectBala)) {
+                if (personatge.xocaAmb(rectBala)) {
                         personatge.tocat();
                         if (personatge.isMort()) {
                             personatge.setImatge(
@@ -227,7 +279,7 @@ public class Pantalla {
     public final boolean dinsPantalla(final Cosa b) {
         GRectangle pant  = new GRectangle(0, 0,
                 escriptori.getWidth(), escriptori.getHeight());
-        return pant.intersects(b.getRectanglePosicio());
+        return b.xocaAmb(pant);
     }
 
     /**

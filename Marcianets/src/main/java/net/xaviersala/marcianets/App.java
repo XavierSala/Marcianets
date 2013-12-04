@@ -1,7 +1,6 @@
 package net.xaviersala.marcianets;
 
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 import acm.graphics.GLabel;
 import acm.program.GraphicsProgram;
@@ -62,7 +61,7 @@ public class App extends GraphicsProgram {
 
         escriptori.creaMarcador();
 
-        while (true) {
+        while (!escriptori.partidaAcabada()) {
             pause(RETARD);
             escriptori.mou();
         }
@@ -87,7 +86,7 @@ public class App extends GraphicsProgram {
         escriptori.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
                 0, lloc);
         escriptori.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
-                getWidth() - POSICIOCINCUANTA*2, lloc);
+                getWidth() - POSICIOCINCUANTA * 2, lloc);
         escriptori.addNau(TipusNau.NAUENEMIGAKAMIKAZE,
                 getWidth() / 2, lloc);
     }
@@ -114,7 +113,7 @@ public class App extends GraphicsProgram {
 
         switch(e.getKeyCode()) {
         case KeyEvent.VK_UP:
-           Bala b = escriptori.getProtagonista().dispara();
+           BalaAmiga b = escriptori.getProtagonista().dispara();
            if (b != null) {
                escriptori.addBala(b);
                escriptori.canviaMarcador();

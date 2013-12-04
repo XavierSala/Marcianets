@@ -65,15 +65,7 @@ public abstract class Nau extends CosaMobil {
      * bala fins que deixa de tocar.
      * @return retorna la bala creada
      */
-    public Bala dispara() {
-
-        Bala b = (Bala) ObjectesFactory.build(TipusNau.BALA, getEsquerra(),
-                getDalt(), Direccio.AMUNT);
-        separaObjecteFinsQueNoXoqui((CosaMobil) b);
-
-        return b;
-    }
-
+    public abstract Bala dispara();
     /**
      * La nau es mou.
      */

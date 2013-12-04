@@ -11,17 +11,12 @@ import java.awt.Image;
 public class NauEnemiga extends Nau {
 
     /**
-     * Cap on es mou si arriba al racó.
-     */
-    private double moviment;
-
-    /**
      * Velocitat de la nau.
      */
     public static final int VELOCITATNAU = 4;
 
     /**
-     * Provabilitat d'atacar sobre 1000
+     * Provabilitat d'atacar.
      */
     private static final double PROVABILITATATACAR = 0.002;
     /**
@@ -34,7 +29,7 @@ public class NauEnemiga extends Nau {
         super(img, x, y);
         setDireccio(Direccio.DRETA);
         setVelocitat(VELOCITATNAU);
-        moviment = 1;
+        // moviment = 1;
     }
 
     /**
@@ -53,9 +48,9 @@ public class NauEnemiga extends Nau {
      * @return retona la bala;
      */
     public final Bala dispara() {
-        Bala b = (Bala) ObjectesFactory.build(TipusNau.BALA,
-                getEsquerra(), getDalt(), Direccio.AVALL);
-        separaObjecteFinsQueNoXoqui((CosaMobil) b);
+        Bala b = (Bala) ObjectesFactory.build(TipusNau.BALAENEMIGA,
+                getEsquerra(), getDalt());
+        // separaObjecteFinsQueNoXoqui((CosaMobil) b);
         return b;
     }
 
@@ -81,13 +76,13 @@ public class NauEnemiga extends Nau {
 
         // He hagut de comprovar que no surt de la pantalla per culpa
         // dels objectes kami...
-        double desplasament = getAltura() * -1;
-        if ((getDalt() + desplasament) < 0) {
-            moviment *= -1;
-            desplasament *= -1;
-        }
-        mouA(0, moviment);
-        moviment *= -1;
+//        double desplasament = getAltura() * -1;
+//        if ((getDalt() + desplasament) < 0) {
+//            moviment *= -1;
+//            desplasament *= -1;
+//        }
+//        mouA(0, moviment);
+//        moviment *= -1;
     }
 
 
