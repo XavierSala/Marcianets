@@ -7,7 +7,6 @@ import java.awt.Image;
  * Cosa estàtica servirà per definir objectes que no es mouen de la pantalla.
  *
  * @author xavier
- *
  */
 public class CosaEstatica extends Cosa {
 
@@ -19,16 +18,15 @@ public class CosaEstatica extends Cosa {
      */
     public CosaEstatica(final String fitxer) {
         super(fitxer);
-       setTipus("Estatica");
     }
 
     /**
      * Construeix un personatge a partir de la imatge.
+     *
      * @param img nom del fitxer
      */
     public CosaEstatica(final Image img) {
         super(img);
-        setTipus("Estatica");
     }
 
     /**
@@ -37,12 +35,11 @@ public class CosaEstatica extends Cosa {
      * especifiquen.
      *
      * @param img imatge a posar
-     * @param x Coordenada x
-     * @param y Coordenada y
+     * @param x   Coordenada x
+     * @param y   Coordenada y
      */
     public CosaEstatica(final Image img, final double x, final double y) {
         super(img, x, y);
-        setTipus("Estatica");
     }
 
     @Override

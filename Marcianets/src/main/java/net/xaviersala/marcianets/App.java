@@ -61,7 +61,7 @@ public class App extends GraphicsProgram {
 
         escriptori.creaMarcador();
 
-        while (!escriptori.partidaAcabada()) {
+        while (escriptori.noPartidaAcabada()) {
             pause(RETARD);
             escriptori.mou();
         }

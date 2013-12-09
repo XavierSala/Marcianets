@@ -15,7 +15,6 @@ public abstract class Nau extends CosaMobil {
      */
     public Nau(final Image img) {
         super(img);
-        inicialitza();
     }
 
     /**
@@ -26,15 +25,6 @@ public abstract class Nau extends CosaMobil {
      */
     public Nau(final Image img, final double x, final double y) {
         super(img, x, y);
-        inicialitza();
-    }
-
-    /**
-     * Inicialitza el tipus d'objecte (crec que no serveix per res).
-     */
-    private void inicialitza() {
-        setTipus("Nau");
-
     }
 
     /**
@@ -44,18 +34,8 @@ public abstract class Nau extends CosaMobil {
     @Override
     public boolean tocat() {
          setVelocitat(0);
-         setMort(true);
-         return true;
-    }
-
-    /**
-     * Mou l'altre objecte fins que no toca a aquest.
-     * @param b bala
-     */
-    protected final void separaObjecteFinsQueNoXoqui(final CosaMobil b) {
-        while (b.getRectanglePosicio().intersects(getRectanglePosicio())) {
-                b.mou();
-        }
+        setMort();
+        return true;
     }
 
     /**
@@ -66,11 +46,6 @@ public abstract class Nau extends CosaMobil {
      * @return retorna la bala creada
      */
     public abstract Bala dispara();
-    /**
-     * La nau es mou.
-     */
-    public void mou() {
-        super.mou();
-    }
+
 
 }

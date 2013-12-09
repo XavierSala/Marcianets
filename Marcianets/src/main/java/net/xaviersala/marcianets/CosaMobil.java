@@ -9,7 +9,6 @@ import acm.graphics.GImage;
  * Defineix un objecte que es mou per pantalla.
  *
  * @author xavier
- *
  */
 public abstract class CosaMobil extends Cosa {
 
@@ -21,18 +20,10 @@ public abstract class CosaMobil extends Cosa {
      * Velocitat del moviment.
      */
     private double velocitat;
-    /**
-     * Construeix un personatge a partir del fitxer que conté la imatge.
-     * @param fitxer nom del fitxer
-     */
-    public CosaMobil(final String fitxer) {
-        super(fitxer);
-        velocitat = 0;
-        direccio = Direccio.DRETA;
-    }
 
     /**
      * Construeix un personatge a partir de la imatge.
+     *
      * @param img nom del fitxer
      */
     public CosaMobil(final Image img) {
@@ -47,8 +38,8 @@ public abstract class CosaMobil extends Cosa {
      * especifiquen.
      *
      * @param img imatge a posar
-     * @param x Coordenada x
-     * @param y Coordenada y
+     * @param x   Coordenada x
+     * @param y   Coordenada y
      */
     public CosaMobil(final Image img, final double x, final double y) {
         super(img, x, y);
@@ -74,6 +65,7 @@ public abstract class CosaMobil extends Cosa {
 
     /**
      * Defineix una nova direcció.
+     *
      * @param dreta Direcció en que es vol moure
      */
     public final void setDireccio(final Direccio dreta) {
@@ -82,6 +74,7 @@ public abstract class CosaMobil extends Cosa {
 
     /**
      * Retorna la direcció en la que s'està movent.
+     *
      * @return la direcció en graus
      */
     public final Direccio getDireccio() {
@@ -90,6 +83,7 @@ public abstract class CosaMobil extends Cosa {
 
     /**
      * Defineix una nova velocitat per l'objecte.
+     *
      * @param mida velocitat en píxels
      */
     public final void setVelocitat(final double mida) {

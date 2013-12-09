@@ -48,19 +48,11 @@ public class NauEnemiga extends Nau {
      * @return retona la bala;
      */
     public final Bala dispara() {
-        Bala b = (Bala) ObjectesFactory.build(TipusNau.BALAENEMIGA,
+        return (Bala) ObjectesFactory.build(TipusNau.BALAENEMIGA,
                 getEsquerra(), getDalt());
         // separaObjecteFinsQueNoXoqui((CosaMobil) b);
-        return b;
+        // return b;
     }
-
-    /**
-     * Moure la nau cap els costats.
-     */
-    public void mou() {
-        super.mou();
-     }
-
 
     /**
      * Gira cap a l'altre costat.

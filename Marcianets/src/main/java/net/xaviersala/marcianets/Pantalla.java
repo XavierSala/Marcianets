@@ -84,8 +84,8 @@ public class Pantalla {
      * naus enemigues
      * @return si s'ha acabat la partida
      */
-    public final boolean partidaAcabada() {
-        return (protagonista.isMort() || numeroNausEnemigues == 0);
+    public final boolean noPartidaAcabada() {
+        return (!protagonista.isMort() && numeroNausEnemigues > 0);
     }
 
     /**
@@ -102,8 +102,8 @@ public class Pantalla {
     public final  void addProtagonista() {
 
         int posicio = addNau(TipusNau.NAUAMIGA,
-                 posicioAleatoria((int) escriptori.getWidth()),
-                 (int) escriptori.getHeight() - POSICIOCINCUANTA);
+                posicioAleatoria(escriptori.getWidth()),
+                escriptori.getHeight() - POSICIOCINCUANTA);
         protagonista = (NauAmiga) coses.get(posicio);
     }
 
@@ -146,7 +146,7 @@ public class Pantalla {
      * Actualitza el marcador de bales.
      */
     public final void canviaMarcador() {
-        String numBales = ((NauAmiga) protagonista).getBalesDisponibles();
+        String numBales = protagonista.getBalesDisponibles();
         balesDisponibles.setLabel("bales:" + numBales);
     }
 
@@ -198,8 +198,8 @@ public class Pantalla {
                 CosaMobil m = (CosaMobil) p;
                 m.mou();
                 if (p instanceof Bala) {
-                    if (!dinsPantalla(p)) {
-                       removeElement(p);
+                    if (foraPantalla(p)) {
+                        removeElement(p);
                    } else {
                        if ((p instanceof BalaAmiga)) {
                            if (comprovaXocBala((Bala) p)) {
@@ -217,8 +217,8 @@ public class Pantalla {
                        }
                    }
                 } else if (p instanceof NauEnemiga) {
-                    if (!totDins(p)) {
-                       ((CosaMobil) p).mouUndo();
+                    if (haSortit(p)) {
+                        ((CosaMobil) p).mouUndo();
                        ((NauEnemiga) p).gira();
                     } else {
                         Bala b = ((NauEnemiga) p).comprovaSiDispara();
@@ -272,11 +272,11 @@ public class Pantalla {
     }
 
     /**
-     * Comprova si està dins de la pantalla.
+     * Comprova si està fora de la pantalla.
      * @param b Objecte a comprovar
      * @return Torna si està dins o no
      */
-    public final boolean dinsPantalla(final Cosa b) {
+    public final boolean foraPantalla(final Cosa b) {
         GRectangle pant  = new GRectangle(0, 0,
                 escriptori.getWidth(), escriptori.getHeight());
         return b.xocaAmb(pant);
@@ -287,7 +287,7 @@ public class Pantalla {
      * @param b objecte a comprovar
      * @return l'objecte està dins de la pantalla o no
      */
-    public final boolean totDins(final Cosa b) {
+    public final boolean haSortit(final Cosa b) {
         GRectangle pant  = new GRectangle(0, 0,
                 escriptori.getWidth(), escriptori.getHeight());
         GRectangle resultat = b.getImatge().getBounds().intersection(pant);

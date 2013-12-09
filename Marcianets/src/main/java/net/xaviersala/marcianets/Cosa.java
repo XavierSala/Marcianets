@@ -20,28 +20,9 @@ public abstract class Cosa {
     private GImage imatge = null;
 
     /**
-     * Identificador del tipus.
-     */
-    private String tipus;
-
-    /**
      * Determina si està mort.
      */
     private boolean mort = false;
-
-    /**
-     * @return the tipus
-     */
-    public final String getTipus() {
-        return tipus;
-    }
-
-    /**
-     * @param tipusCosa the tipus to set
-     */
-    public final void setTipus(final String tipusCosa) {
-        this.tipus = tipusCosa;
-    }
 
     /**
      * Crea una imatge .
@@ -136,14 +117,6 @@ public abstract class Cosa {
    public final void setX(final double x) {
        imatge.setLocation(x, imatge.getY());
    }
-   /**
-    * Mou el personate en la direcció i píxels especificats.
-    * @param x direcció x
-    * @param y direcció y
-    */
-   public final void mouA(final double x, final double y) {
-       imatge.move(x,  y);
-   }
 
    /**
     * @return Posició x de l'objecte
@@ -205,10 +178,10 @@ public abstract class Cosa {
    }
 
     /**
-     * @param estaMort the mort to set
+     * Mata l'objecte.
      */
-    public final void setMort(final boolean estaMort) {
-        this.mort = estaMort;
+    public final void setMort() {
+        this.mort = true;
     }
 
     /**
