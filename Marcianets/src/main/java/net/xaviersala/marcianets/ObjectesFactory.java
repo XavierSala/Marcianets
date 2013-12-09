@@ -64,23 +64,29 @@ public final class ObjectesFactory {
         Cosa c = null;
         switch (tipus) {
             case BALAAMIGA:
-                c = new BalaAmiga(armari.get(tipus.getFitxer()).getImage(), x, y);
+                c = new BalaAmiga(armari.get(tipus.getFitxer()).getImage(),
+                        x, y);
                 break;
             case BALAENEMIGA:
-                c = new BalaEnemiga(armari.get(tipus.getFitxer()).getImage(), x, y);
+                c = new BalaEnemiga(armari.get(tipus.getFitxer()).getImage(),
+                        x, y);
                 break;
             case NAUAMIGA:
-                c = new NauAmiga(armari.get(tipus.getFitxer()).getImage(), x, y);
+                c = new NauAmiga(armari.get(tipus.getFitxer()).getImage(),
+                        x, y);
                 break;
             case NAUENEMIGANORMAL:
-                c = new NauEnemiga(armari.get(tipus.getFitxer()).getImage(), x, y);
+                c = new NauEnemiga(armari.get(tipus.getFitxer()).getImage(),
+                        x, y);
                 break;
             case NAUENEMIGAFORTA:
-                c = new NauEnemigaForta(armari.get(tipus.getFitxer()).getImage(),
+                c = new NauEnemigaForta(
+                        armari.get(tipus.getFitxer()).getImage(),
                         x, y);
                 break;
             case NAUENEMIGAKAMIKAZE:
-                c = new NauEnemigaKamikaze(armari.get(tipus.getFitxer()).getImage(),
+                c = new NauEnemigaKamikaze(
+                        armari.get(tipus.getFitxer()).getImage(),
                         x, y);
             default:
                 break;

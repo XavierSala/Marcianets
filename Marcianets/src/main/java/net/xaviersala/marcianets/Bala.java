@@ -22,7 +22,6 @@ public class Bala extends CosaMobil {
     private void inicialitza(final Direccio capOn) {
         setVelocitat(VELOCITATBALA);
         setDireccio(capOn);
-        setTipus("Bala");
     }
 
 

@@ -54,16 +54,6 @@ public class CosaEstaticaTest {
     }
 
     /**
-     * Comprovo que el tipus que torna és el correcte.
-     */
-    @Test
-    public final void testTipus() {
-        cosa = new CosaEstatica(imatge.getImage());
-        assertEquals("Estatica", cosa.getTipus());
-    }
-
-
-    /**
      * Comprovo les funcions que fan referència al posicionament dels
      * objectes estàtics.
      */
