@@ -279,11 +279,11 @@ public class Pantalla {
     public final boolean foraPantalla(final Cosa b) {
         GRectangle pant  = new GRectangle(0, 0,
                 escriptori.getWidth(), escriptori.getHeight());
-        return b.xocaAmb(pant);
+        return !b.xocaAmb(pant);
     }
 
     /**
-     * Comprova si l'objecte està dins de la pantalla.
+     * Comprova si l'objecte ha sortit de la pantalla.
      * @param b objecte a comprovar
      * @return l'objecte està dins de la pantalla o no
      */
@@ -291,7 +291,7 @@ public class Pantalla {
         GRectangle pant  = new GRectangle(0, 0,
                 escriptori.getWidth(), escriptori.getHeight());
         GRectangle resultat = b.getImatge().getBounds().intersection(pant);
-        return resultat.equals(b.getImatge().getBounds());
+        return !resultat.equals(b.getImatge().getBounds());
 
 
     }
