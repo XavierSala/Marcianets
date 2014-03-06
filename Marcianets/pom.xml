@@ -6,28 +6,40 @@
   <name>marcianets</name>
   <description>Joc de matar marcians fent servir herència</description>
   <dependencies>
-  	<dependency>
-  		<groupId>junit</groupId>
-  		<artifactId>junit</artifactId>
-  		<version>4.11</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>acm</groupId>
-  		<artifactId>acm</artifactId>
-  		<scope>system</scope>
-  		<systemPath>${basedir}/src/lib/acm.jar</systemPath>
-  		<version>1.0</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.mockito</groupId>
-  		<artifactId>mockito-all</artifactId>
-  		<version>1.9.5</version>
-  		<scope>test</scope>
-  	</dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+    </dependency>
+    <dependency>
+      <groupId>acm</groupId>
+      <artifactId>acm</artifactId>
+      <scope>system</scope>
+      <systemPath>${basedir}/src/lib/acm.jar</systemPath>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.9.5</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <properties>
-  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  	<maven.compiler.source>1.7</maven.compiler.source>
-  	<maven.compiler.target>1.7</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>2.11</version>
+        <configuration>
+          <configLocation>checkstyle-result.xml</configLocation>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
