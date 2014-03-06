@@ -11,13 +11,18 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
     </dependency>
-    <dependency>
-      <groupId>acm</groupId>
+<!--     <dependency> -->
+<!--       <groupId>acm</groupId> -->
+<!--       <artifactId>acm</artifactId> -->
+<!--       <scope>system</scope> -->
+<!--       <systemPath>${basedir}/src/lib/acm.jar</systemPath> -->
+<!--       <version>1.0</version> -->
+<!--     </dependency> -->
+  <dependency>
+      <groupId>graphics</groupId>
       <artifactId>acm</artifactId>
-      <scope>system</scope>
-      <systemPath>${basedir}/src/lib/acm.jar</systemPath>
       <version>1.0</version>
-    </dependency>
+ </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
@@ -30,6 +35,29 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
+  <build>
+      <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>2.5.2</version>
+            <configuration>
+                <!--
+                   Enables analysis which takes more memory but finds more bugs.
+                   If you run out of memory, changes the value of the effort element
+                   to 'Low'.
+               -->
+                <effort>Max</effort>
+                <!-- Reports all bugs (other values are medium and max) -->
+                <threshold>Low</threshold>
+                <!-- Produces XML report -->
+                <xmlOutput>true</xmlOutput>
+                <!-- Configures the directory in which the XML report is created -->
+                <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
+            </configuration>
+        </plugin>
+    </plugins>
+  </build>
   <reporting>
     <plugins>
       <plugin>
