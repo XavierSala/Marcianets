@@ -30,16 +30,37 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
-  <build>
+  <reporting>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>2.11</version>
-        <configuration>
-          <configLocation>checkstyle-result.xml</configLocation>
-        </configuration>
+        <reportSets>
+            <reportSet>
+              <reports>
+                <report>checkstyle-result.xml</report>
+              </reports>
+            </reportSet>
+          </reportSets>
       </plugin>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>2.5.2</version>
+            <configuration>
+                <!--
+                   Enables analysis which takes more memory but finds more bugs.
+                   If you run out of memory, changes the value of the effort element
+                   to 'low'.
+               -->
+                <effort>Max</effort>
+                <!-- Reports all bugs (other values are medium and max) -->
+                <threshold>Low</threshold>
+                <!-- Produces XML report -->
+                <xmlOutput>true</xmlOutput>
+            </configuration>
+        </plugin>
     </plugins>
-  </build>
+  </reporting>
 </project>
