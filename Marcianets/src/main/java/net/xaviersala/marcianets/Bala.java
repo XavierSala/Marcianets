@@ -16,16 +16,6 @@ public class Bala extends CosaMobil {
     public static final double VELOCITATBALA = 10;
 
     /**
-     * Defineix la velocitat i la direcció de la bala.
-     * @param capOn direcció en graus
-     */
-    private void inicialitza(final Direccio capOn) {
-        setVelocitat(VELOCITATBALA);
-        setDireccio(capOn);
-    }
-
-
-    /**
      * Construeix una bala a partir d'una imatge
      * i la posiciona en les coordenades que se li
      * especifiquen.
@@ -41,7 +31,22 @@ public class Bala extends CosaMobil {
         inicialitza(capOn);
     }
 
+    /**
+     * Defineix la velocitat i la direcció de la bala.
+     * @param capOn direcció en graus
+     */
+    private void inicialitza(final Direccio capOn) {
+        setVelocitat(VELOCITATBALA);
+        setDireccio(capOn);
+    }
 
+
+
+    /**
+     * Les bales no es toquen.
+     *
+     * @return sempre que no
+     */
     @Override
     public final boolean tocat() {
         return false;

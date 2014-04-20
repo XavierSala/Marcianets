@@ -8,17 +8,6 @@ import org.junit.Before;
  */
 public class AppTest {
 
-    /**
-     * Crear una instància.
-     *
-     * @throws Exception
-     */
-    @Before
-    public final void setUp() throws Exception {
-
-
-    }
-
 
 
 }

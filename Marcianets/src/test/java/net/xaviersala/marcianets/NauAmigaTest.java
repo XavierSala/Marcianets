@@ -128,7 +128,7 @@ public class NauAmigaTest {
     public final void testDispara() {
         int bales = NauAmiga.MAXIMBALES;
         NauAmiga c = new NauAmiga(imatge.getImage(), POSICIOX, POSICIOY);
-        // Es crea amb les bales a tope;
+
         assertTrue(c.getNumBalesDisponibles() == bales);
 
         // No ha de canviar si el carregador està ple

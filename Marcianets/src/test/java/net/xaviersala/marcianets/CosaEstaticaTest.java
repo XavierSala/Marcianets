@@ -70,7 +70,15 @@ public class CosaEstaticaTest {
         assertTrue(cosa.getDreta() == imatge.getWidth());
         assertTrue(cosa.getBaix() == imatge.getHeight());
         assertFalse(cosa.tocat());
-        cosa = null;
+        for (int i = 0; i < REPETICIONS; i++) {
+            int posx = r.nextInt(800);
+            int posy = r.nextInt(600);
+            cosa = new CosaEstatica(imatge.getImage(), posx, posy);
+            assertTrue(cosa.getEsquerra() == posx);
+            assertTrue(cosa.getDalt() == posy);
+            assertTrue(cosa.getDreta() == posx + imatge.getWidth());
+            assertTrue(cosa.getBaix() == posy + imatge.getHeight());
+        }
     }
 
     /**

@@ -18,6 +18,7 @@ public class NauEnemigaKamikaze extends NauEnemiga {
      */
     private double liniaBase;
 
+
     /**
      * Crea una nau kamikaze.
      * @param img Imatge de la nau
@@ -53,8 +54,7 @@ public class NauEnemigaKamikaze extends NauEnemiga {
         case AMUNT:
             if (getDalt() <= liniaBase) {
                 setY(liniaBase);
-                setDireccio(Direccio.ESQUERRA);
-                setVelocitat(VELOCITATNAU);
+                setDireccioIVelocitat(Direccio.ESQUERRA, VELOCITATNAU);
             }
             break;
          default:
@@ -78,5 +78,20 @@ public class NauEnemigaKamikaze extends NauEnemiga {
     public final Bala comprovaSiDispara() {
         return null;
     }
+
+    /**
+     * @return the liniaBase
+     */
+    public double getLiniaBase() {
+        return liniaBase;
+    }
+
+    /**
+     * @param liniaBase the liniaBase to set
+     */
+    public void setLiniaBase(double liniaBase) {
+        this.liniaBase = liniaBase;
+    }
+
 
 }

@@ -3,6 +3,7 @@ package net.xaviersala.marcianets;
 import java.awt.Image;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 import acm.graphics.GImage;
 
@@ -17,7 +18,7 @@ public final class ObjectesFactory {
     /**
      * Lloc on es guarden les imatges.
      */
-    private static HashMap<String, GImage> armari
+    private static Map<String, GImage> armari
 //    private static Hashtable<String, GImage> armari
             = new HashMap<String, GImage>();
 
@@ -43,7 +44,7 @@ public final class ObjectesFactory {
      * @return imatge imatge associada
      */
     public static Image getImatge(final String nom) {
-        if (armari.isEmpty()) { // size() == 0) {
+        if (armari.isEmpty()) {
             carregarImatges();
         }
         return armari.get(nom).getImage();

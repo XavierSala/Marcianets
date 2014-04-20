@@ -125,7 +125,6 @@ public class App extends GraphicsProgram {
     @Override
     public final void keyPressed(final KeyEvent e) {
 
-        // Control·lem la nau principal...
         NauAmiga nau = escriptori.getProtagonista();
 
         switch(e.getKeyCode()) {
