@@ -2,8 +2,10 @@ package net.xaviersala.marcianets;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.Random;
 
 import org.junit.Before;
@@ -20,6 +22,10 @@ import acm.graphics.GRectangle;
  */
 public class CosaEstaticaTest {
 
+    /**
+     * Imatge de la nau a carregar.
+     */
+    private static final String NAU_GIF = "nau.gif";
     /**
      * Valor numèric per definir la pantalla.
      */
@@ -45,12 +51,37 @@ public class CosaEstaticaTest {
 
     /**
      * Crear la imatge inicial i inicia el generador de números aleatòris.
-     * @throws Exception Alguna cosa ha fallat
+     * @throws IOException Alguna cosa ha fallat
      */
     @Before
-    public final void setUp() throws Exception {
+    public final void setUp() throws IOException {
         r = new Random();
-        imatge = new GImage("nau.gif");
+        imatge = new GImage(NAU_GIF);
+    }
+
+    /**
+     * Comprovar que es crea l'objecte a partir d'un nom d'arxiu.
+     */
+    @Test
+    public final void testCrearArxiu() {
+        cosa = new CosaEstatica(NAU_GIF);
+        assertTrue(cosa.getEsquerra() == 0);
+        assertTrue(cosa.getDalt() == 0);
+        assertTrue(cosa.getDreta() == imatge.getWidth());
+        assertTrue(cosa.getBaix() == imatge.getHeight());
+        assertFalse(cosa.tocat());
+        cosa = null;
+    }
+
+    /**
+     * Comprovar que realment es crea una cosa estàtica que no
+     * està morta.
+     */
+    @Test
+    public final void testNoTocat() {
+        cosa = new CosaEstatica(imatge.getImage());
+        assertFalse(cosa.tocat());
+
     }
 
     /**

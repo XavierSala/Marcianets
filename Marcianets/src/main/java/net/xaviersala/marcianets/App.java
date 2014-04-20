@@ -71,7 +71,7 @@ public class App extends GraphicsProgram {
     /**
      * Agegir naus enemigues.
      */
-    private void afegirNausEnemigues() {
+    public final void afegirNausEnemigues() {
         int lloc = PosicioFiles.TERCERAFILA.getPosicio();
         for (int i = 0; i < NUMNAUS; i++) {
             escriptori.addNau(TipusNau.NAUENEMIGANORMAL,
@@ -93,6 +93,20 @@ public class App extends GraphicsProgram {
 
 
     /**
+     * @return the escriptori
+     */
+    public final Pantalla getEscriptori() {
+        return escriptori;
+    }
+
+    /**
+     * @param pantalla the escriptori to set
+     */
+    public final void setEscriptori(final Pantalla pantalla) {
+        this.escriptori = pantalla;
+    }
+
+    /**
      * Clica per començar.
      */
     private void clicaPerComencar() {
@@ -111,26 +125,27 @@ public class App extends GraphicsProgram {
     @Override
     public final void keyPressed(final KeyEvent e) {
 
+        // Control·lem la nau principal...
+        NauAmiga nau = escriptori.getProtagonista();
+
         switch(e.getKeyCode()) {
         case KeyEvent.VK_UP:
-           BalaAmiga b = escriptori.getProtagonista().dispara();
+           BalaAmiga b = nau.dispara();
            if (b != null) {
                escriptori.addBala(b);
                escriptori.canviaMarcador();
            }
             break;
         case KeyEvent.VK_LEFT:
-            escriptori.getProtagonista().setDireccio(Direccio.ESQUERRA);
-            escriptori.getProtagonista().setVelocitat(2);
+            nau.setDireccioIVelocitat(Direccio.ESQUERRA, 2);
             break;
         case KeyEvent.VK_RIGHT:
-            escriptori.getProtagonista().setDireccio(Direccio.DRETA);
-            escriptori.getProtagonista().setVelocitat(2);
-
+            nau.setDireccioIVelocitat(Direccio.DRETA, 2);
             break;
         case KeyEvent.VK_R:
-            escriptori.getProtagonista().recarrega();
+            nau.recarrega();
             escriptori.canviaMarcador();
+            break;
         default:
             break;
         }

@@ -9,13 +9,6 @@ import java.awt.Image;
  *
  */
 public abstract class Nau extends CosaMobil {
-    /**
-     * Construeix una nau a partir de la seva imatge.
-     * @param img imatge.
-     */
-    public Nau(final Image img) {
-        super(img);
-    }
 
     /**
      * Construeix una nau i  la posa a un lloc determinat.

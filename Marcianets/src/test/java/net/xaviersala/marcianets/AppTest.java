@@ -1,35 +1,24 @@
 package net.xaviersala.marcianets;
 
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Before;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest
-    extends TestCase {
+public class AppTest {
+
     /**
-     * Create the test case.
+     * Crear una instància.
      *
-     * @param testName name of the test case
+     * @throws Exception
      */
-    public AppTest(final String testName) {
-        super(testName);
+    @Before
+    public final void setUp() throws Exception {
+
+
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()  {
-        return new TestSuite(AppTest.class);
-    }
 
-    /**
-     * Rigourous Test :-).
-     */
-    public final void testApp()  {
-        assertTrue(true);
-    }
+
 }

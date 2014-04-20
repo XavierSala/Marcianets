@@ -1,6 +1,7 @@
 package net.xaviersala.marcianets;
 
 import java.awt.Image;
+import java.util.HashMap;
 import java.util.Hashtable;
 
 import acm.graphics.GImage;
@@ -16,8 +17,9 @@ public final class ObjectesFactory {
     /**
      * Lloc on es guarden les imatges.
      */
-    private static Hashtable<String, GImage> armari
-            = new Hashtable<String, GImage>();
+    private static HashMap<String, GImage> armari
+//    private static Hashtable<String, GImage> armari
+            = new HashMap<String, GImage>();
 
     /**
      * Evitar la creació d'objectes d'aquest tipus.
@@ -41,7 +43,7 @@ public final class ObjectesFactory {
      * @return imatge imatge associada
      */
     public static Image getImatge(final String nom) {
-        if (armari.size() == 0) {
+        if (armari.isEmpty()) { // size() == 0) {
             carregarImatges();
         }
         return armari.get(nom).getImage();
@@ -58,7 +60,7 @@ public final class ObjectesFactory {
     public static Cosa build(final TipusNau tipus, final double x,
                              final double y) {
 
-        if (armari.size() == 0) {
+        if (armari.isEmpty()) {
             carregarImatges();
         }
         Cosa c = null;
@@ -88,6 +90,7 @@ public final class ObjectesFactory {
                 c = new NauEnemigaKamikaze(
                         armari.get(tipus.getFitxer()).getImage(),
                         x, y);
+                break;
             default:
                 break;
 

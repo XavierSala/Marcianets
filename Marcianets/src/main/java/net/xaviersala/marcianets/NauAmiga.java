@@ -21,13 +21,6 @@ public class NauAmiga extends Nau {
     private int balesDisponibles;
 
     /**
-     * @return the balesDisponibles
-     */
-    public final String getBalesDisponibles() {
-        return Integer.toString(balesDisponibles);
-    }
-
-    /**
      * Crea una nau enemiga.
      * @param img Imatge
      * @param x coordenades x
@@ -37,6 +30,23 @@ public class NauAmiga extends Nau {
         super(img, x, y);
         balesDisponibles = MAXIMBALES;
     }
+
+    /**
+     *
+     * @return Número de bales disponibles
+     */
+    public final int getNumBalesDisponibles() {
+        return balesDisponibles;
+    }
+
+    /**
+     * @return the balesDisponibles
+     */
+    public final String getBalesDisponibles() {
+        return Integer.toString(balesDisponibles);
+    }
+
+
 
     /**
      * Dispara si li queden bales.
@@ -49,7 +59,6 @@ public class NauAmiga extends Nau {
         if (balesDisponibles > 0) {
             b = (BalaAmiga) ObjectesFactory.build(TipusNau.BALAAMIGA,
                     getEsquerra(), getDalt());
-            // separaObjecteFinsQueNoXoqui((CosaMobil) b);
             balesDisponibles--;
         }
         return b;

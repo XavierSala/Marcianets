@@ -22,17 +22,6 @@ public abstract class CosaMobil extends Cosa {
     private double velocitat;
 
     /**
-     * Construeix un personatge a partir de la imatge.
-     *
-     * @param img nom del fitxer
-     */
-    public CosaMobil(final Image img) {
-        super(img);
-        velocitat = 0;
-        direccio = Direccio.DRETA;
-    }
-
-    /**
      * Construeix una cosa a partir d'una imatge
      * i la posiciona en les coordenades que se li
      * especifiquen.
@@ -70,6 +59,17 @@ public abstract class CosaMobil extends Cosa {
      */
     public final void setDireccio(final Direccio dreta) {
         direccio = dreta;
+    }
+
+    /**
+     * Defineix una nova direcció i velocitat.
+     *
+     * @param dir Direcció en que es vol moure
+     * @param vel Velocitat a la que es mourà
+     */
+    public final void setDireccioIVelocitat(final Direccio dir, final int vel) {
+        direccio = dir;
+        velocitat = vel;
     }
 
     /**

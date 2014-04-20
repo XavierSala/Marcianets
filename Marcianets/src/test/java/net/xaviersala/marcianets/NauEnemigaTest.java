@@ -1,6 +1,7 @@
 package net.xaviersala.marcianets;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
 
@@ -18,6 +19,7 @@ import acm.graphics.GRectangle;
  */
 public class NauEnemigaTest {
 
+    private static final int _10000 = 10000;
     /**
      * Número per fer passades aleatòries.
      */
@@ -34,7 +36,7 @@ public class NauEnemigaTest {
      * Generador de números aleatòris.
      */
     private Random r;
-    // Armari armari = Armari.getInstance();
+
 
     /**
      * Carrega la imatge.
@@ -144,6 +146,15 @@ public class NauEnemigaTest {
         mouNVegades(r.nextInt(PASSADES));
         b = enemiga.dispara();
         assertEquals(direccioEsperada , b.getDireccio());
+
+        int suma = 0;
+        for(int i = 0; i < _10000; i++) {
+            if (enemiga.comprovaSiDispara() != null) {
+                suma++;
+            }
+        }
+        assertTrue(suma > 0);
+
 
     }
 

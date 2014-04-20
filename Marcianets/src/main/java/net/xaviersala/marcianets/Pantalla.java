@@ -18,6 +18,10 @@ import acm.graphics.GRectangle;
 public class Pantalla {
 
     /**
+     * Fitxer amb l'explosió.
+     */
+    private static final String EXPLOSIO_GIF = "explosio.gif";
+    /**
      * Llista de objectes del joc.
      */
      private List<Cosa>coses;
@@ -42,10 +46,7 @@ public class Pantalla {
      * Generador de números.
      */
      private Random r;
-     /**
-      * Quantitat de naus enemigues.
-      */
-    private int numeroNausEnemigues;
+
 
     /**
      * Crea una pantalla.
@@ -55,7 +56,6 @@ public class Pantalla {
         escriptori = app;
         coses = new  CopyOnWriteArrayList<Cosa>();
         r = new Random();
-        numeroNausEnemigues = 0;
     }
 
     /**
@@ -85,7 +85,10 @@ public class Pantalla {
      * @return si s'ha acabat la partida
      */
     public final boolean noPartidaAcabada() {
-        return (!protagonista.isMort() && numeroNausEnemigues > 0);
+        if (protagonista == null) {
+            return false;
+        }
+        return !protagonista.isMort() && coses.size() > 1;
     }
 
     /**
@@ -146,8 +149,19 @@ public class Pantalla {
      * Actualitza el marcador de bales.
      */
     public final void canviaMarcador() {
-        String numBales = protagonista.getBalesDisponibles();
-        balesDisponibles.setLabel("bales:" + numBales);
+        if (protagonista != null) {
+            String numBales = protagonista.getBalesDisponibles();
+            balesDisponibles.setLabel("bales:" + numBales);
+        }
+    }
+
+    /**
+     * Obtenir el text del marcador.
+     *
+     * @return text del marcador
+     */
+    public final String getMarcador() {
+        return balesDisponibles.getLabel();
     }
 
     /**
@@ -176,7 +190,6 @@ public class Pantalla {
             coses.add(c);
             escriptori.add(c.getImatge());
         }
-        numeroNausEnemigues++;
         return coses.size() - 1;
     }
 
@@ -189,10 +202,6 @@ public class Pantalla {
             Cosa p = it.next();
 
             if (p.isMort()) {
-                // Eliminar els elements morts
-                if (p instanceof NauEnemiga) {
-                    numeroNausEnemigues--;
-                }
                 removeElement(p);
             } else if (p instanceof CosaMobil) {
                 CosaMobil m = (CosaMobil) p;
@@ -201,14 +210,14 @@ public class Pantalla {
                     if (foraPantalla(p)) {
                         removeElement(p);
                    } else {
-                       if ((p instanceof BalaAmiga)) {
+                       if (p instanceof BalaAmiga) {
                            if (comprovaXocBala((Bala) p)) {
                                removeElement(p);
                            }
                        } else {
                            if (comprovaBalaProtagonista((Bala) p)) {
                                GImage explosio = new GImage(
-                                    ObjectesFactory.getImatge("explosio.gif"),
+                                    ObjectesFactory.getImatge(EXPLOSIO_GIF),
                                     p.getEsquerra(), p.getDalt());
                                escriptori.add(explosio);
                                removeElement(p);
@@ -257,15 +266,14 @@ public class Pantalla {
                 continue;
             }
 
-            if (!(personatge instanceof Bala)) {
-                if (personatge.xocaAmb(rectBala)) {
-                        personatge.tocat();
-                        if (personatge.isMort()) {
-                            personatge.setImatge(
-                                    ObjectesFactory.getImatge("explosio.gif"));
-                        }
-                        return true;
-                }
+            if (!(personatge instanceof Bala)
+                  && personatge.xocaAmb(rectBala)) {
+                    personatge.tocat();
+                    if (personatge.isMort()) {
+                        personatge.setImatge(
+                                ObjectesFactory.getImatge(EXPLOSIO_GIF));
+                    }
+                    return true;
             }
         }
         return false;
