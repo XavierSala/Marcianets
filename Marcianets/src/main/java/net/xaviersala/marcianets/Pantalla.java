@@ -207,35 +207,53 @@ public class Pantalla {
                 CosaMobil m = (CosaMobil) p;
                 m.mou();
                 if (p instanceof Bala) {
-                    if (foraPantalla(p)) {
-                        removeElement(p);
-                   } else {
-                       if (p instanceof BalaAmiga) {
-                           if (comprovaXocBala((Bala) p)) {
-                               removeElement(p);
-                           }
-                       } else {
-                           if (comprovaBalaProtagonista((Bala) p)) {
-                               GImage explosio = new GImage(
-                                    ObjectesFactory.getImatge(EXPLOSIO_GIF),
-                                    p.getEsquerra(), p.getDalt());
-                               escriptori.add(explosio);
-                               removeElement(p);
-
-                           }
-                       }
-                   }
+                    movimentBales(p);
                 } else if (p instanceof NauEnemiga) {
-                    if (haSortit(p)) {
-                        ((CosaMobil) p).mouUndo();
-                       ((NauEnemiga) p).gira();
-                    } else {
-                        Bala b = ((NauEnemiga) p).comprovaSiDispara();
-                        if (b != null) {
-                            addBala(b);
-                        }
-                    }
+                    movimentNauEnemiga(p);
                }
+            }
+        }
+    }
+
+    /**
+     * Moviment de les bales.
+     *
+     * @param p Bala a moure
+     */
+    public final void movimentBales(final Cosa p) {
+        if (foraPantalla(p)) {
+            removeElement(p);
+               } else {
+           if (p instanceof BalaAmiga) {
+               if (comprovaXocBala((Bala) p)) {
+                   removeElement(p);
+               }
+           } else {
+               if (comprovaBalaProtagonista((Bala) p)) {
+                   GImage explosio = new GImage(
+                        ObjectesFactory.getImatge(EXPLOSIO_GIF),
+                        p.getEsquerra(), p.getDalt());
+                   escriptori.add(explosio);
+                   removeElement(p);
+
+               }
+           }
+               }
+    }
+
+    /**
+     * Moviment de les naus enemigues.
+     *
+     * @param p La nau enemiga
+     */
+    public final void movimentNauEnemiga(final Cosa p) {
+        if (haSortit(p)) {
+            ((CosaMobil) p).mouUndo();
+           ((NauEnemiga) p).gira();
+        } else {
+            Bala b = ((NauEnemiga) p).comprovaSiDispara();
+            if (b != null) {
+                addBala(b);
             }
         }
     }

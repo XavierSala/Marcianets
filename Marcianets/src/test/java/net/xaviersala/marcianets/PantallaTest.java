@@ -15,6 +15,8 @@ import acm.graphics.GImage;
  */
 public class PantallaTest {
 
+    private static final String BALES_0 = "bales: 0";
+
     /**
      * Imatge de la nau a carregar.
      */
@@ -43,10 +45,10 @@ public class PantallaTest {
     /**
      * Provar la pantalla.
      *
-     * @throws Exception fallada...
+     *
      */
     @Before
-    public final void setUp() throws Exception {
+    public final void setUp()  {
         imatge = new GImage(NAU_GIF);
         app = new App();
         app.setBounds(0, 0, AMPLE, ALT);
@@ -106,9 +108,9 @@ public class PantallaTest {
     @Test
     public final void testMarcador() {
         pantalla.creaMarcador();
-        assertEquals(pantalla.getMarcador(), "bales: 0");
+        assertEquals(pantalla.getMarcador(), BALES_0);
         pantalla.canviaMarcador();
-        assertEquals(pantalla.getMarcador(), "bales: 0");
+        assertEquals(pantalla.getMarcador(), BALES_0);
         pantalla.addProtagonista();
         pantalla.canviaMarcador();
         assertEquals("bales:"

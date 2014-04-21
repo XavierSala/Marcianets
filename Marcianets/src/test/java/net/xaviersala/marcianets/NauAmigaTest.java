@@ -16,26 +16,38 @@ import acm.graphics.GImage;
  *
  */
 public class NauAmigaTest {
+    /**
+     * Valor màxim usat en alguns tests.
+     */
     private static final int MAX = 100;
+    /**
+     * Per definir la posició.
+     */
     private static final int POSICIOX = 10;
+    /**
+     * Per definir la posició.
+     */
     private static final int POSICIOY = 10;
+    /**
+     * Per fer un número de tests iguals.
+     */
     private static final int NUMTESTS = 10;
     /**
      * Números aleatòris.
      */
-    Random r;
+    private Random r;
     /**
      * Imatge de prova.
      */
-    GImage imatge;
+    private GImage imatge;
 
     /**
      * Crear una imatge i iniciar el random.
      *
-     * @throws Exception
+     *
      */
     @Before
-    public void setUp() throws Exception {
+    public final void setUp()  {
         r = new Random();
         imatge = new GImage("nau.gif");
     }
@@ -84,8 +96,6 @@ public class NauAmigaTest {
         assertTrue(c.getDalt() == posy);
         assertTrue(c.getEsquerra() == posx + velocitat);
         posx = posx + velocitat;
-
-        // TODO Falta comprovar els marges...
     }
 
     /**

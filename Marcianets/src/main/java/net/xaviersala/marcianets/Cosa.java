@@ -33,16 +33,6 @@ public abstract class Cosa {
     }
 
     /**
-     * Crea una imatge i la posiciona en el lloc adequat.
-     * @param fitxer Fitxer qeu conté la imatge
-     * @param x coordenada
-     * @param y coordenada
-     */
-    public Cosa(final String fitxer, final double x, final double y) {
-        imatge = new GImage(fitxer, x, y);
-    }
-
-    /**
      * Crea un objecte a partir d'una imatge. La envio ja carregada per
      * aconseguir que no s'hagin de carregar totes les imatges cada cop.
      * @param img Imatge a posar
@@ -70,14 +60,6 @@ public abstract class Cosa {
    }
 
    /**
-    * Canvia la imatge existent per una de nova.
-    * @param novaImatge nom del fitxer
-    */
-   public final void setImatge(final GImage novaImatge) {
-       imatge = novaImatge;
-   }
-
-   /**
     * Canvia la imatge per una de nova que ja està.
     * carregada
     * @param img Imatge a posar
@@ -86,13 +68,6 @@ public abstract class Cosa {
        imatge.setImage(img);
    }
 
-   /**
-    * Canvia la imatge existent per una de nova des d'un fitxer.
-    * @param nomFitxer del fitxer a carregar
-    */
-    public final void setImatgeFile(final String nomFitxer) {
-        imatge = new GImage(nomFitxer);
-    }
    /**
     * Posiciona el personatge en les coordenades especificades (x,y).
     * @param x posicio x

@@ -53,8 +53,7 @@ public class NauEnemigaKamikaze extends NauEnemiga {
             break;
         case AMUNT:
             if (getDalt() <= liniaBase) {
-                setY(liniaBase);
-                setDireccioIVelocitat(Direccio.ESQUERRA, VELOCITATNAU);
+                giraALesquerra();
             }
             break;
          default:
@@ -62,6 +61,14 @@ public class NauEnemigaKamikaze extends NauEnemiga {
              super.gira();
              break;
         }
+    }
+
+    /**
+     * Si ha tornat a dalt de tot ha de girar cap a l'esquerra.
+     */
+    private void giraALesquerra() {
+        setY(liniaBase);
+        setDireccioIVelocitat(Direccio.ESQUERRA, VELOCITATNAU);
     }
 
     /**
@@ -74,6 +81,10 @@ public class NauEnemigaKamikaze extends NauEnemiga {
         }
     }
 
+    /**
+     * Les naus d'aquest tipus mai no disparen.
+     * @return sempre torna null
+     */
     @Override
     public final Bala comprovaSiDispara() {
         return null;
@@ -82,15 +93,15 @@ public class NauEnemigaKamikaze extends NauEnemiga {
     /**
      * @return the liniaBase
      */
-    public double getLiniaBase() {
+    public final double getLiniaBase() {
         return liniaBase;
     }
 
     /**
-     * @param liniaBase the liniaBase to set
+     * @param base the liniaBase to set
      */
-    public void setLiniaBase(double liniaBase) {
-        this.liniaBase = liniaBase;
+    public final void setLiniaBase(final double base) {
+        this.liniaBase = base;
     }
 
 

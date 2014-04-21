@@ -19,7 +19,10 @@ import acm.graphics.GRectangle;
  */
 public class NauEnemigaTest {
 
-    private static final int _10000 = 10000;
+    /**
+     * Valor numèric per aleatoritzar.
+     */
+    private static final int DEUMIL = 10000;
     /**
      * Número per fer passades aleatòries.
      */
@@ -40,10 +43,10 @@ public class NauEnemigaTest {
 
     /**
      * Carrega la imatge.
-     * @throws Exception La imatge no hi és
+     *
      */
     @Before
-    public final void setUp() throws Exception {
+    public final void setUp() {
 
 
          r = new Random();
@@ -148,7 +151,7 @@ public class NauEnemigaTest {
         assertEquals(direccioEsperada , b.getDireccio());
 
         int suma = 0;
-        for(int i = 0; i < _10000; i++) {
+        for (int i = 0; i < DEUMIL; i++) {
             if (enemiga.comprovaSiDispara() != null) {
                 suma++;
             }

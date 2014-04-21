@@ -49,23 +49,35 @@ public class App extends GraphicsProgram {
       */
     public final void run() {
 
-        escriptori = new Pantalla(this);
-
-        ObjectesFactory.carregarImatges();
+        inicialitzarJoc();
 
         clicaPerComencar();
-
-        escriptori.addProtagonista();
-
-        afegirNausEnemigues();
-
-        escriptori.creaMarcador();
 
         while (escriptori.noPartidaAcabada()) {
             pause(RETARD);
             escriptori.mou();
         }
 
+    }
+
+    /**
+     * Inicialitzar totes les coses que necessita el joc.
+     * - Crear la pantalla
+     * - Carregar les imatges
+     * - Afegir el protagonista
+     * - Afegir naus enemigues
+     * - Crear el marcador
+     */
+    public final void inicialitzarJoc() {
+        escriptori = new Pantalla(this);
+
+        ObjectesFactory.carregarImatges();
+
+        escriptori.addProtagonista();
+
+        afegirNausEnemigues();
+
+        escriptori.creaMarcador();
     }
 
     /**
@@ -129,11 +141,7 @@ public class App extends GraphicsProgram {
 
         switch(e.getKeyCode()) {
         case KeyEvent.VK_UP:
-           BalaAmiga b = nau.dispara();
-           if (b != null) {
-               escriptori.addBala(b);
-               escriptori.canviaMarcador();
-           }
+            protagonistaDispara(nau);
             break;
         case KeyEvent.VK_LEFT:
             nau.setDireccioIVelocitat(Direccio.ESQUERRA, 2);
@@ -148,6 +156,22 @@ public class App extends GraphicsProgram {
         default:
             break;
         }
+    }
+
+    /**
+     * Fem que la nau especificada dispari.
+     *
+     * Si pot disparar ha d'afegir la bala a l'escriptori i se li ha de
+     * descomptar una bala del seu marcador
+     *
+     * @param nau Nau que ha de disparar
+     */
+    public final void protagonistaDispara(final NauAmiga nau) {
+        BalaAmiga b = nau.dispara();
+           if (b != null) {
+               escriptori.addBala(b);
+               escriptori.canviaMarcador();
+           }
     }
 
 

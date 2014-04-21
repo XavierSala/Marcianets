@@ -13,7 +13,7 @@ import acm.graphics.GImage;
 public abstract class CosaMobil extends Cosa {
 
     /**
-     * Direcció del moviment en graus.
+     * Direcció del moviment.
      */
     private Direccio direccio;
     /**

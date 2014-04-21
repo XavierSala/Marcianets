@@ -1,9 +1,9 @@
-/**
- *
- */
 package net.xaviersala.marcianets;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
+
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +21,10 @@ public class NauEnemigaKamikazeTest {
      */
     private static final int NUMEROGRAN = 20000;
     /**
+     * Per posicionar.
+     */
+    private static final int CENT = 100;
+    /**
      * La nau.
      */
     private NauEnemigaKamikaze kami;
@@ -29,12 +33,17 @@ public class NauEnemigaKamikazeTest {
      */
     private GImage imatge;
     /**
-     * @throws java.lang.Exception
+     * Aleatòris
+     */
+    Random r;
+    /**
+     * @throws java.lang.Exception Problemes!
      */
     @Before
     public final void setUp() throws Exception {
+        r = new Random();
         imatge = new GImage("");
-        kami = new NauEnemigaKamikaze(imatge.getImage(), 100, 100);
+        kami = new NauEnemigaKamikaze(imatge.getImage(), CENT, CENT);
         kami.setLiniaBase(0);
     }
 
@@ -46,10 +55,17 @@ public class NauEnemigaKamikazeTest {
      */
     @Test(timeout = NUMEROGRAN)
     public final void testGira() {
-        Direccio dir  = kami.getDireccio();
+
+        Direccio[] dir  = {Direccio.DRETA, Direccio.ESQUERRA};
+        int i=0;
+
+        assertTrue(kami.getDireccio() == dir[i]);
+        kami.gira();
+        i = i + 1;
+        assertTrue(kami.getDireccio() == dir[i]);
 
         while (kami.getDireccio() != Direccio.AVALL) {
-            assertTrue(kami.getDireccio() == dir);
+            assertTrue(kami.getDireccio() == dir[i]);
             kami.mou();
         }
 
@@ -65,6 +81,7 @@ public class NauEnemigaKamikazeTest {
         }
 
         assertTrue(kami.getDireccio() == Direccio.ESQUERRA);
+
     }
 
     /**
