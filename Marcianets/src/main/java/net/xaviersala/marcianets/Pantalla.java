@@ -148,8 +148,10 @@ public class Pantalla {
     /**
      * Actualitza el marcador de bales.
      */
-    public final void canviaMarcador() {
-        if (balesDisponibles == null) return;
+    final void canviaMarcador() {
+        if (balesDisponibles == null) {
+            return;
+        }
         if (protagonista != null) {
             String numBales = protagonista.getBalesDisponibles();
             balesDisponibles.setLabel("bales:" + numBales);

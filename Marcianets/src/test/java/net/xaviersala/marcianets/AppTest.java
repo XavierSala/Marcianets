@@ -1,17 +1,16 @@
 package net.xaviersala.marcianets;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertNotNull;
 
 import java.awt.Component;
-import java.awt.Point;
-import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import acm.graphics.GImage;
 
 /**
  * Comprovem les funcions més importants de l'objecte principal.
@@ -43,10 +42,8 @@ public class AppTest {
      */
     private static final int ALT = 600;
     /**
-     * Imatge de la nau a carregar.
+     * Número de proves a fer.
      */
-    private static final String NAU_GIF = "nau.gif";
-
     private static final int TOTALPROVES = 10;
 
     /**
@@ -58,17 +55,13 @@ public class AppTest {
      */
     private Pantalla pantalla;
     /**
-     * Imatge per les proves.
-     */
-    private GImage imatge;
-    /**
      * Iniciem tot plegat.
      *
      *
      */
     @Before
     public final void setUp()  {
-        imatge = new GImage(NAU_GIF);
+
          app = new App();
          app.setBounds(0, 0, AMPLE, ALT);
          pantalla = new Pantalla(app);
