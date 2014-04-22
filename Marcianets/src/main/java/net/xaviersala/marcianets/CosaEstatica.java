@@ -11,16 +11,6 @@ import java.awt.Image;
 public class CosaEstatica extends Cosa {
 
     /**
-     * Construeix una cosa estàtica a partir del nom del fitxer que conté la
-     * imatge que farà servir.
-     *
-     * @param fitxer fitxer JPG o GIF que conté la imatge
-     */
-    public CosaEstatica(final String fitxer) {
-        super(fitxer);
-    }
-
-    /**
      * Construeix un personatge a partir de la imatge.
      *
      * @param img nom del fitxer

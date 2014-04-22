@@ -149,6 +149,7 @@ public class Pantalla {
      * Actualitza el marcador de bales.
      */
     public final void canviaMarcador() {
+        if (balesDisponibles == null) return;
         if (protagonista != null) {
             String numBales = protagonista.getBalesDisponibles();
             balesDisponibles.setLabel("bales:" + numBales);
@@ -161,7 +162,11 @@ public class Pantalla {
      * @return text del marcador
      */
     public final String getMarcador() {
-        return balesDisponibles.getLabel();
+        if (balesDisponibles != null) {
+            return balesDisponibles.getLabel();
+        } else {
+            return null;
+        }
     }
 
     /**

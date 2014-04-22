@@ -23,6 +23,14 @@ import acm.graphics.GRectangle;
 public class CosaEstaticaTest {
 
     /**
+     * Dimensions de la pantalla.
+     */
+    private static final int ALTURA = 600;
+    /**
+     * Dimensions de la pantalla.
+     */
+    private static final int AMPLADA = 800;
+    /**
      * Imatge de la nau a carregar.
      */
     private static final String NAU_GIF = "nau.gif";
@@ -64,15 +72,15 @@ public class CosaEstaticaTest {
      */
     @Test
     public final void testCrearArxiu() {
-        cosa = new CosaEstatica(NAU_GIF);
+        cosa = new CosaEstatica(imatge.getImage());
         assertTrue(cosa.getEsquerra() == 0);
         assertTrue(cosa.getDalt() == 0);
         assertTrue(cosa.getDreta() == imatge.getWidth());
         assertTrue(cosa.getBaix() == imatge.getHeight());
         assertFalse(cosa.tocat());
         for (int i = 0; i < REPETICIONS; i++) {
-            int posx = r.nextInt(800);
-            int posy = r.nextInt(600);
+            int posx = r.nextInt(AMPLADA);
+            int posy = r.nextInt(ALTURA);
             cosa = new CosaEstatica(imatge.getImage(), posx, posy);
             assertTrue(cosa.getEsquerra() == posx);
             assertTrue(cosa.getDalt() == posy);

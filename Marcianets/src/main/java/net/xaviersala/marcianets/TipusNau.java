@@ -17,7 +17,7 @@ public enum TipusNau {
     /**
      * Bales enemigues.
      */
-    BALAENEMIGA("bala.gif"),
+    BALAENEMIGA("bala2.gif"),
     /**
      * Explosió.
      */

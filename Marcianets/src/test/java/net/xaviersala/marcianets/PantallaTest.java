@@ -15,6 +15,9 @@ import acm.graphics.GImage;
  */
 public class PantallaTest {
 
+    /**
+     * Text del marcador quan no hi ha bales.
+     */
     private static final String BALES_0 = "bales: 0";
 
     /**
@@ -129,9 +132,6 @@ public class PantallaTest {
         assertTrue(pantalla.addNau(TipusNau.NAUENEMIGAFORTA, 0, 0) == 1);
         pantalla.addProtagonista();
         assertTrue(pantalla.addNau(TipusNau.NAUENEMIGAFORTA, 0, 0) == 3);
-
-
-
     }
 
     /**
@@ -139,7 +139,7 @@ public class PantallaTest {
      */
     @Test
     public final void testBales() {
-        pantalla.addBala(new BalaAmiga(imatge.getImage(), 50, 50));
+        pantalla.addBala(new BalaAmiga(imatge.getImage(), 0, 0));
 
     }
 

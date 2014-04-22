@@ -2,7 +2,6 @@ package net.xaviersala.marcianets;
 
 import java.awt.Image;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 import acm.graphics.GImage;

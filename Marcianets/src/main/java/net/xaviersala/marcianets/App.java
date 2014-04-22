@@ -25,7 +25,7 @@ public class App extends GraphicsProgram {
      */
     private static final int RETARD = 30;
     /**
-     * Número de plantes.
+     * Número de naus "normals" per cada fila..
      */
     private static final int NUMNAUS = 10;
     /**
@@ -170,7 +170,9 @@ public class App extends GraphicsProgram {
         BalaAmiga b = nau.dispara();
            if (b != null) {
                escriptori.addBala(b);
-               escriptori.canviaMarcador();
+               if (escriptori.getMarcador() != null) {
+                   escriptori.canviaMarcador();
+               }
            }
     }
 

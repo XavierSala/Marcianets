@@ -33,14 +33,14 @@ public class NauEnemigaKamikazeTest {
      */
     private GImage imatge;
     /**
-     * Aleatòris
+     * Aleatòris.
      */
-    Random r;
+    private Random r;
     /**
-     * @throws java.lang.Exception Problemes!
+     * Creació de l'objecte principal.
      */
     @Before
-    public final void setUp() throws Exception {
+    public final void setUp()  {
         r = new Random();
         imatge = new GImage("");
         kami = new NauEnemigaKamikaze(imatge.getImage(), CENT, CENT);
@@ -57,7 +57,7 @@ public class NauEnemigaKamikazeTest {
     public final void testGira() {
 
         Direccio[] dir  = {Direccio.DRETA, Direccio.ESQUERRA};
-        int i=0;
+        int i = 0;
 
         assertTrue(kami.getDireccio() == dir[i]);
         kami.gira();
