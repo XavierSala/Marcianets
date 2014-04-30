@@ -230,22 +230,22 @@ public class Pantalla {
     public final void movimentBales(final Cosa p) {
         if (foraPantalla(p)) {
             removeElement(p);
-               } else {
-           if (p instanceof BalaAmiga) {
-               if (comprovaXocBala((Bala) p)) {
-                   removeElement(p);
-               }
-           } else {
-               if (comprovaBalaProtagonista((Bala) p)) {
-                   GImage explosio = new GImage(
-                        ObjectesFactory.getImatge(EXPLOSIO_GIF),
-                        p.getEsquerra(), p.getDalt());
-                   escriptori.add(explosio);
-                   removeElement(p);
+        } else {
+            if (p instanceof BalaAmiga) {
+                if (comprovaXocBala((Bala) p)) {
+                    removeElement(p);
+                }
+            } else {
+                if (comprovaBalaProtagonista((Bala) p)) {
+                    GImage explosio = new GImage(
+                            ObjectesFactory.getImatge(EXPLOSIO_GIF),
+                            p.getEsquerra(), p.getDalt());
+                    escriptori.add(explosio);
+                    removeElement(p);
 
-               }
-           }
-               }
+                }
+            }
+        }
     }
 
     /**
