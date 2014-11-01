@@ -11,6 +11,7 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
+      <scope>test</scope>
     </dependency>
     <!-- <dependency> -->
     <!-- <groupId>acm</groupId> -->
@@ -59,15 +60,6 @@
                 <aggregate>true</aggregate>
               </configuration>
             </plugin>
-            <!-- Checks projects code conventions -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-checkstyle-plugin</artifactId>
-              <version>2.6</version>
-              <configuration>
-                <configLocation>check_style.xml</configLocation>
-              </configuration>
-            </plugin>
           </reportPlugins>
         </configuration>
       </plugin>
@@ -75,19 +67,19 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.7.0.201403182114</version>
-        <configuration>
-          <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
-          <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
-        </configuration>
+  <configuration>
+     <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+     <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+  </configuration>
         <executions>
           <execution>
-            <id>jacoco-initialize</id>
+            <id>default-prepare-agent</id>
             <goals>
               <goal>prepare-agent</goal>
             </goals>
           </execution>
           <execution>
-            <id>jacoco-site</id>
+            <id>default-report</id>
             <phase>package</phase>
             <goals>
               <goal>report</goal>
@@ -95,68 +87,12 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.16</version>
-        <executions>
-          <execution>
-            <id>verify</id>
-            <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
-            </goals>
-            <configuration>
-              <argLine>${jacoco.agent.arg}</argLine>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>2.5.2</version>
-        <configuration>
-          <!-- Enables analysis which takes more memory but finds more bugs. If
-            you run out of memory, changes the value of the effort element to 'Low'. -->
-          <effort>Max</effort>
-          <!-- Reports all bugs (other values are medium and max) -->
-          <threshold>Low</threshold>
-          <!-- Produces XML report -->
-          <xmlOutput>true</xmlOutput>
-          <!-- Configures the directory in which the XML report is created -->
-          <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.11</version>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>checkstyle-result.xml</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>2.5.2</version>
-        <configuration>
-          <!-- Enables analysis which takes more memory but finds more bugs. If
-            you run out of memory, changes the value of the effort element to 'low'. -->
-          <effort>Max</effort>
-          <!-- Reports all bugs (other values are medium and max) -->
-          <threshold>Low</threshold>
-          <!-- Produces XML report -->
-          <xmlOutput>true</xmlOutput>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
+  <repositories>
+  <repository>
+    <id>Local</id>
+    <url>file://{basedir}/repository</url>
+  </repository>
+  </repositories>
 </project>
