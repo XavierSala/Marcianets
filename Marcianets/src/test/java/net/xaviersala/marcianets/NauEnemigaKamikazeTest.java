@@ -3,8 +3,6 @@ package net.xaviersala.marcianets;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 
-import java.util.Random;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,16 +30,13 @@ public class NauEnemigaKamikazeTest {
      * La imatge.
      */
     private GImage imatge;
-    /**
-     * Aleatòris.
-     */
-    private Random r;
+
     /**
      * Creació de l'objecte principal.
      */
     @Before
     public final void setUp()  {
-        r = new Random();
+
         imatge = new GImage("");
         kami = new NauEnemigaKamikaze(imatge.getImage(), CENT, CENT);
         kami.setLiniaBase(0);

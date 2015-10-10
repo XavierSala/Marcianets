@@ -139,7 +139,7 @@ public class App extends GraphicsProgram {
 
         NauAmiga nau = escriptori.getProtagonista();
 
-        switch(e.getKeyCode()) {
+        switch (e.getKeyCode()) {
         case KeyEvent.VK_UP:
             protagonistaDispara(nau);
             break;
