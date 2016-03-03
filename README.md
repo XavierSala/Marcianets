@@ -20,6 +20,14 @@ L'objecte principal és pantalla el qual se n'encarrega de carregar tot el que c
 
 En alguns punts és molt clar que segurament caldria canviar alguna classe per una interfície (però encara no n'hem parlat a classe)
 
+Compilar
+------------
+Es tracta d'un projecte Maven de manera que compilar-lo consisteix en simplement dir-li que empaqueti el programa i es podrà executar amb comandes (o en alguns sistemes, com Windows, fent clic sobre el Jar)
+
+    $ mvn package
+    $ cd target
+    $ java -jar Marcianets-0.0.2-SNAPSHOT.jar
+
 Todo
 ----------
 Hi ha moltes millores possibles que qui vulgui pot encarar...
