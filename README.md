@@ -1,6 +1,6 @@
 Marcianets
 ============
-Es tracta d'un programa que fa el que fan els tradicionals jocs de matamarcians fent servir la llibreria ACM que permet fer-ho de forma senzilla. 
+Es tracta d'un programa que fa el que fan els tradicionals jocs de matamarcians fent servir la llibreria ACM que permet fer-ho de forma senzilla.
 
 Joc
 ------------
@@ -12,29 +12,20 @@ La nau es mou amb les tecles esquerra ( <-- ), dreta ( --> ) i dispara (fletxa a
 
 Notes
 --------
-El codi no és perfecte perquè està pensat per ensenyar als alumnes els avantatges que s'obtenen fent servir herència i polimorfisme. L'estructura d'objectes que s'està fent servir és la següent: 
+El codi no és perfecte perquè està pensat per ensenyar als alumnes els avantatges que s'obtenen fent servir herència i polimorfisme. L'estructura d'objectes que s'està fent servir és la següent:
 
-![objectes](README/marcianets2.png "Relació entre classes") 
+![objectes](README/marcianets2.png "Relació entre classes")
 
 L'objecte principal és pantalla el qual se n'encarrega de carregar tot el que cal per començar i després també gestiona l'aparició, desaparició dels diferents objectes del joc (naus, bales, etc..)
 
 En alguns punts és molt clar que segurament caldria canviar alguna classe per una interfície (però encara no n'hem parlat a classe)
 
-Compilar
-------------
-Es tracta d'un projecte Maven de manera que compilar-lo consisteix en simplement dir-li que empaqueti el programa i es podrà executar amb comandes (o en alguns sistemes, com Windows, fent clic sobre el Jar)
-
-    $ mvn package
-    $ cd target
-    $ java -jar Marcianets-0.0.2-SNAPSHOT.jar
-
 Todo
 ----------
 Hi ha moltes millores possibles que qui vulgui pot encarar...
 
-* Només hi ha una sola pantalla 
+* Només hi ha una sola pantalla
 * Es poden afegir noves naus enemigues que facin coses diferents
 * Es poden diferenciar les bales de les naus
 * Es poden afegir objectes estàtics a pantalla com proteccions, etc.. (actualment hi ha la classe però no es fa servir per res)
-* ... 
-
+* ...
