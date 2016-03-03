@@ -6,6 +6,28 @@
   <version>0.0.2-SNAPSHOT</version>
   <name>marcianets</name>
   <description>Joc de matar marcians fent servir herència</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <sonar.language>java</sonar.language>
+    <sonar.jacoco.itReportPath>${project.basedir}/reports/jacoco.exec</sonar.jacoco.itReportPath>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>lib</id>
+      <name>lib</name>
+      <releases>
+        <enabled>true</enabled>
+        <checksumPolicy>ignore</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>file://${project.basedir}/repository</url>
+    </repository>
+  </repositories>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -25,11 +47,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar.language>java</sonar.language>
-    <sonar.jacoco.itReportPath>${project.basedir}/reports/jacoco.exec</sonar.jacoco.itReportPath>
-  </properties>
+
   <build>
     <plugins>
       <plugin>
@@ -41,8 +59,8 @@
           <!-- Reports that will be displayed on a generated site -->
           <reportPlugins>
             <!-- Produces a cross-reference of the project's sources. This is useful
-              for other reports like PMD or Checkstyle. When this plugin is used with checkstyle
-              you can see code that produces style warning/error in the report. -->
+            for other reports like PMD or Checkstyle. When this plugin is used with checkstyle
+            you can see code that produces style warning/error in the report. -->
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-jxr-plugin</artifactId>
@@ -55,13 +73,33 @@
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>net.xaviersala.marcianets.App</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.7.0.201403182114</version>
-  <configuration>
-     <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
-     <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
-  </configuration>
+        <configuration>
+          <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+          <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+        </configuration>
         <executions>
           <execution>
             <id>default-prepare-agent</id>
@@ -80,10 +118,5 @@
       </plugin>
     </plugins>
   </build>
-  <repositories>
-  <repository>
-    <id>Local</id>
-    <url>file://${basedir}/repository</url>
-  </repository>
-  </repositories>
+
 </project>
