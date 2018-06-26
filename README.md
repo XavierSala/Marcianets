@@ -1,3 +1,5 @@
+#FpExperiencies #DawMp03Uf04 #Programació
+
 Marcianets
 ============
 Es tracta d'un programa que fa el que fan els tradicionals jocs de matamarcians fent servir la llibreria ACM que permet fer-ho de forma senzilla.
